@@ -4,6 +4,8 @@ from django.views.generic import ListView
 
 from portfolio.models import Project, VisitorPreference
 
+VALID_LAYOUTS = {"carousel", "grid", "list"}
+
 
 def _visitor_key(request):
     """SHA-256 of IP + User-Agent — no cookies, no auth."""
@@ -20,9 +22,8 @@ class ProjectListView(ListView):
         return Project.objects.prefetch_related("tech_stack", "images").order_by("order", "name")
 
     def get(self, request, *args, **kwargs):
-        # Persist layout preference if toggled via ?layout=grid|list
         layout = request.GET.get("layout")
-        if layout in ("grid", "list"):
+        if layout in VALID_LAYOUTS:
             key = _visitor_key(request)
             VisitorPreference.objects.update_or_create(
                 visitor_key=key,
@@ -35,10 +36,9 @@ class ProjectListView(ListView):
         key = _visitor_key(self.request)
         pref, _ = VisitorPreference.objects.get_or_create(visitor_key=key)
         ctx["layout"] = pref.layout
-        ctx["featured_projects"] = Project.objects.filter(is_featured=True).prefetch_related(
-            "tech_stack", "images"
-        ).order_by("order")
-        ctx["recent_projects"] = Project.objects.prefetch_related(
-            "tech_stack", "images"
-        ).order_by("-date_added")[:3]
+        ctx["featured_projects"] = (
+            Project.objects.filter(is_featured=True)
+            .prefetch_related("tech_stack", "images")
+            .order_by("order")
+        )
         return ctx

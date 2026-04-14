@@ -2,43 +2,51 @@
 {% if projects %}
 <section class="carousel-section" aria-label="Featured projects">
 
-  <div class="section-label">
-    <span class="t-prompt">→</span> open ./projects/featured
-  </div>
+  {# ── SLIDE TRACK ── #}
+  <div class="carousel-outer" id="carousel">
+    <div class="carousel-track" id="carousel-track">
+      {% for project in projects %}
+      <div class="carousel-slide"
+           data-index="{{ forloop.counter0 }}"
+           data-slug="{{ project.slug }}"
+           data-detail-url="{% url 'portfolio:project_detail' project.slug %}">
 
-  <div class="carousel-wrap" id="carousel">
-    {% for project in projects %}
-    <div class="carousel-slide {% if forloop.first %}carousel-slide--active{% endif %}" data-index="{{ forloop.counter0 }}">
-      <div class="carousel-img">
-        {% with hero=project.images.all|first %}
-          {% if hero %}
-            <img src="{{ hero.url }}" alt="{{ project.name }}" />
-          {% else %}
-            <div class="carousel-img-placeholder">[ {{ project.name }} ]</div>
-          {% endif %}
-        {% endwith %}
-      </div>
-      <div class="carousel-meta">
-        <div class="carousel-meta-left">
-          <h2 class="carousel-title">{{ project.name }}</h2>
-          <p class="carousel-subtitle">
-            {% for item in project.tech_stack.all %}{{ item.name }}{% if not forloop.last %} &nbsp;·&nbsp; {% endif %}{% endfor %}
-            &nbsp;·&nbsp; {{ project.involvement_percent }}% solo
-          </p>
+        <a href="{% url 'portfolio:project_detail' project.slug %}" class="carousel-img-link">
+          <div class="carousel-img">
+            {% with hero=project.images.all|first %}
+              {% if hero %}
+                <img src="{{ hero.url }}" alt="{{ project.name }}" />
+              {% else %}
+                <div class="carousel-img-placeholder">[ {{ project.name }} ]</div>
+              {% endif %}
+            {% endwith %}
+          </div>
+        </a>
+
+        <div class="carousel-meta">
+          <div class="carousel-meta-left">
+            <h2 class="carousel-title">{{ project.name }}</h2>
+            <p class="carousel-subtitle">
+              {% for item in project.tech_stack.all %}{{ item.name }}{% if not forloop.last %} · {% endif %}{% endfor %}
+              · {{ project.involvement_percent }}% solo
+            </p>
+          </div>
+          <div class="carousel-actions">
+            {% if project.url %}
+              <a href="{{ project.url }}"
+                 class="btn-visit"
+                 target="_blank"
+                 rel="noopener noreferrer">{{ project.display_url }} ↗</a>
+            {% endif %}
+          </div>
         </div>
-        <div class="carousel-actions">
-          {% if project.url %}
-            <a href="{{ project.url }}" class="btn-visit" target="_blank" rel="noopener noreferrer">
-              Visit {{ project.display_url }} ↗
-            </a>
-          {% endif %}
-          <a href="{% url 'portfolio:project_detail' project.slug %}" class="btn-detail">View details</a>
-        </div>
+
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 
+  {# ── CAROUSEL CONTROLS ── #}
   <div class="carousel-controls">
     <div class="carousel-dots" role="tablist" aria-label="Project slides">
       {% for project in projects %}
@@ -46,16 +54,17 @@
                 role="tab"
                 aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
                 aria-label="{{ project.name }}"
-                data-target="{{ forloop.counter0 }}">
-        </button>
+                data-target="{{ forloop.counter0 }}"></button>
       {% endfor %}
     </div>
+
     <div class="carousel-nav-btns">
       <button class="carousel-btn" id="carousel-prev" aria-label="Previous project">←</button>
       <button class="carousel-btn" id="carousel-next" aria-label="Next project">→</button>
     </div>
   </div>
 
+  {# ── THUMB STRIP ── #}
   <div class="thumb-strip" role="tablist" aria-label="Select project">
     {% for project in projects %}
       <button class="thumb {% if forloop.first %}thumb--active{% endif %}"

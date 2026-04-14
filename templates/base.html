@@ -17,18 +17,13 @@
 
   <nav class="site-nav">
     <div class="nav-left">
-      <div class="traffic-lights" aria-hidden="true">
-        <span class="tl tl-r"></span>
-        <span class="tl tl-y"></span>
-        <span class="tl tl-g"></span>
-      </div>
       <a href="{% url 'portfolio:project_list' %}" class="logo">
         <span class="logo-prefix">~/</span><span class="logo-name">pixelmonks</span>
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="{% url 'portfolio:project_list' %}" {% if request.resolver_match.url_name == 'project_list' %}class="active-link"{% endif %}>work</a></li>
-      <li><a href="{% url 'portfolio:project_list' %}#about">about</a></li>
+      <li><a href="{% url 'portfolio:project_list' %}" class="nav-glass-pill {% if request.resolver_match.url_name == 'project_list' %}nav-glass-pill--active{% endif %}">work</a></li>
+      <li><a href="{% url 'portfolio:about' %}" class="nav-glass-pill {% if request.resolver_match.url_name == 'about' %}nav-glass-pill--active{% endif %}">about</a></li>
       <li><a href="{% url 'portfolio:contact' %}" class="nav-pill {% if request.resolver_match.url_name == 'contact' %}nav-pill--active{% endif %}">contact</a></li>
     </ul>
   </nav>

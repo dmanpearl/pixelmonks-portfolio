@@ -8,9 +8,6 @@
 
   <div class="terminal-window contact-terminal">
     <div class="terminal-bar">
-      <div class="traffic-lights" aria-hidden="true">
-        <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
-      </div>
       <span class="terminal-title">dmanpearl — send-message</span>
     </div>
     <div class="terminal-body">
@@ -25,48 +22,44 @@
         {# name #}
         <div class="form-field {% if form.name.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.name.id_for_label }}">
-            <span class="t-prompt">→</span>
-            <span class="about-key">{{ form.name.label|lower }}</span>
+            <span class="t-prompt">→</span><span class="about-key">name</span>
           </label>
           {{ form.name }}
-          {% for error in form.name.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+          {% for e in form.name.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
         </div>
 
         {# email #}
         <div class="form-field {% if form.email.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.email.id_for_label }}">
-            <span class="t-prompt">→</span>
-            <span class="about-key">{{ form.email.label|lower }}</span>
+            <span class="t-prompt">→</span><span class="about-key">email</span>
           </label>
           {{ form.email }}
-          {% for error in form.email.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+          {% for e in form.email.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
         </div>
 
-        {# phone + method on the same row #}
-        <div class="form-field form-field--phone-row {% if form.phone.errors or form.contact_method.errors %}form-field--error{% endif %}">
+        {# phone + method — method dropdown scoped to this field only #}
+        <div class="form-field {% if form.phone.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.phone.id_for_label }}">
             <span class="t-prompt">→</span>
             <span class="about-key">phone</span>
-            <span class="form-label-hint">(optional)</span>
+            <span class="form-label-hint">optional</span>
           </label>
           <div class="phone-row">
             {{ form.phone }}
-            {{ form.contact_method }}
+            {{ form.phone_method }}
           </div>
-          {% for error in form.phone.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+          {% for e in form.phone.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
         </div>
 
         {# message #}
         <div class="form-field {% if form.message.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.message.id_for_label }}">
-            <span class="t-prompt">→</span>
-            <span class="about-key">{{ form.message.label|lower }}</span>
+            <span class="t-prompt">→</span><span class="about-key">message</span>
           </label>
           {{ form.message }}
-          {% for error in form.message.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+          {% for e in form.message.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
         </div>
 
-        {# Honeypot — hidden from real users, traps bots #}
         <div class="visually-hidden" aria-hidden="true">
           <input type="text" name="website" tabindex="-1" autocomplete="off" />
         </div>

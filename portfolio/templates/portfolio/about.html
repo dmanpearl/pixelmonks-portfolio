@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About — Pixelmonks{% endblock %}
+
+{% block content %}
+<div class="about-wrap">
+
+  <div class="terminal-window about-terminal-window">
+    <div class="terminal-bar">
+      <div class="traffic-lights" aria-hidden="true">
+        <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
+      </div>
+      <span class="terminal-title">dmanpearl — about.json</span>
+    </div>
+    <div class="about-body">
+
+      <div class="about-fields">
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">name</span>
+          <span class="about-val">David Manpearl</span>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">company</span>
+          <span class="about-val">Pixelmonks, LLC</span>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">email</span>
+          <a href="mailto:dmanpearl@pixelmonks.com" class="about-link">dmanpearl@pixelmonks.com</a>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">experience</span>
+          <span class="about-val">30+ years</span>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">specialties</span>
+          <span class="about-val">backend · UX · APIs · mobile · desktop</span>
+        </div>
+        <div class="about-line about-line--comment">
+          <span class="t-prompt">→</span>
+          <span class="about-comment"># available for new projects</span>
+        </div>
+      </div>
+
+      {# Prose section — fill in when ready #}
+      <div class="about-prose">
+        <div class="t-line" style="margin-bottom:0.75rem">
+          <span class="t-prompt">→</span>
+          <span class="t-cmd">cat bio.txt</span>
+        </div>
+        <p>TODO: bio goes here.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -7,12 +7,14 @@ class VisitorPreference(models.Model):
     No personal data beyond IP is stored; used only for UX state persistence.
     """
 
+    LAYOUT_CHOICES = [
+        ("carousel", "Carousel"),
+        ("grid", "Grid"),
+        ("list", "List"),
+    ]
+
     visitor_key = models.CharField(max_length=64, unique=True, db_index=True)
-    layout = models.CharField(
-        max_length=10,
-        choices=[("grid", "Grid"), ("list", "List")],
-        default="grid",
-    )
+    layout = models.CharField(max_length=10, choices=LAYOUT_CHOICES, default="carousel")
     last_seen = models.DateTimeField(auto_now=True)
 
     class Meta:

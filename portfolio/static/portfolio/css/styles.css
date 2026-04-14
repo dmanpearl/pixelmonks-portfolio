@@ -111,7 +111,7 @@ img {
 
 .t-output {
   display: block;
-  padding: 0.1rem 0 0.1rem 2rem;
+  padding: 0.1rem 0;
   font-family: var(--font-mono);
   font-size: 0.82rem;
   color: var(--muted);
@@ -119,12 +119,12 @@ img {
 
 .t-output--big {
   font-family: var(--font-sans);
-  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-size: clamp(1.8rem, 3.6vw, 3.24rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.1;
   color: var(--text);
-  padding: 0.75rem 0 0.75rem 2rem;
+  padding: 0.75rem 0;
 }
 
 .cursor {
@@ -223,7 +223,6 @@ img {
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
 }
 
 .logo {
@@ -245,7 +244,7 @@ img {
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 0.5rem;
   list-style: none;
   align-items: center;
 }
@@ -259,9 +258,21 @@ img {
   transition: color 0.2s;
 }
 
-.nav-links a:hover,
-.nav-links a.active-link {
-  color: var(--cyan);
+.nav-glass-pill {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--muted) !important;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-weight: 400 !important;
+  font-size: 0.72rem !important;
+  transition: color 0.2s, border-color 0.2s !important;
+}
+
+.nav-glass-pill:hover,
+.nav-glass-pill--active {
+  color: var(--cyan) !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
 }
 
 .nav-pill {
@@ -338,48 +349,33 @@ img {
 
 /* ── CAROUSEL ── */
 .carousel-section {
-  padding: 1.75rem 2.5rem 0;
+  padding: 0 2.5rem 0;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.carousel-wrap {
+/* The outer wrapper clips the sliding track */
+.carousel-outer {
   background: var(--surface);
   border: 1px solid var(--border2);
   border-radius: 12px;
   overflow: hidden;
   backdrop-filter: blur(10px);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-  /* clip the slide-out animation */
-  position: relative;
 }
 
+/* The track holds all slides side-by-side; JS translates it */
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Each slide is exactly one viewport-of-the-carousel wide */
 .carousel-slide {
-  display: none;
-}
-
-.carousel-slide--active {
-  display: block;
-}
-
-/* Slide in from the right (next / auto-advance) */
-.carousel-slide--enter-right {
-  display: block;
-  animation: carousel-enter-right 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-/* Slide in from the left (prev) */
-.carousel-slide--enter-left {
-  display: block;
-  animation: carousel-enter-left 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-@keyframes carousel-enter-right {
-  from { opacity: 0; transform: translateX(48px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes carousel-enter-left {
-  from { opacity: 0; transform: translateX(-48px); }
-  to   { opacity: 1; transform: translateX(0); }
+  flex: 0 0 100%;
+  min-width: 0;
 }
 
 .carousel-img {
@@ -417,11 +413,12 @@ img {
 }
 
 .carousel-meta {
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .carousel-title {
@@ -476,12 +473,29 @@ img {
   color: var(--text);
 }
 
+.carousel-label-text {
+  color: var(--amber);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.carousel-label-text:hover { color: var(--cyan); }
+
+.carousel-img-link { display: block; }
+
 .carousel-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1.25rem;
   border-top: 1px solid var(--border);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.carousel-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .carousel-dots {
@@ -535,6 +549,8 @@ img {
   display: flex;
   gap: 0.75rem;
   padding: 0.75rem 2.5rem 0;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .thumb {
@@ -572,28 +588,39 @@ img {
   color: var(--text2);
 }
 
-/* ── ALL PROJECTS ── */
-.all-projects {
-  padding-top: 1.75rem;
-}
-
-/* ── LAYOUT TOGGLE ── */
-.layout-toggle {
+/* ── GALLERY HEADER (grid / list modes) ── */
+.gallery-header {
   display: flex;
-  gap: 0.4rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 2.5rem 0.75rem;
 }
 
-.layout-btn {
-  font-size: 1rem;
-  color: var(--muted2);
-  padding: 0.2rem 0.5rem;
-  border-radius: 5px;
+/* ── VIEW TOGGLE (carousel / grid / list icons) ── */
+.view-toggle {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
   border: 1px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
-  line-height: 1;
+  color: var(--muted2);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
-.layout-btn--active {
+.view-btn:hover {
+  color: var(--text);
+  border-color: var(--border2);
+}
+
+.view-btn--active {
   color: var(--violet);
   border-color: rgba(124, 58, 237, 0.35);
   background: rgba(124, 58, 237, 0.08);
@@ -1154,4 +1181,80 @@ img {
   color: var(--muted2);
   font-size: 0.65rem;
   font-style: italic;
+}
+
+.carousel-actions {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .carousel-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .btn-visit {
+    white-space: normal;
+    word-break: break-word;
+  }
+  .carousel-controls {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+/* ── ABOUT PAGE ── */
+.about-wrap {
+  padding: 2rem 2.5rem 3rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.about-terminal-window {
+  width: 100%;
+}
+
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-fields {
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-prose {
+  padding: 1.25rem 2rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+.about-prose p {
+  padding-left: 2rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .about-wrap {
+    padding: 1.25rem 1rem 2rem;
+  }
+  .about-fields {
+    padding: 1rem;
+  }
+  .about-line {
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+  }
+  .about-key {
+    min-width: 70px;
+  }
+  .about-prose {
+    padding: 1rem;
+  }
 }
