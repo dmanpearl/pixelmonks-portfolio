@@ -1,0 +1,132 @@
+{% load i18n static %}
+{% load log %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<head>
+  <title>{% block title %}{% trans "Log in" %} | {% trans "Django site admin" %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" />
+  {% block extrastyle %}
+    <link rel="stylesheet" href="{% static "admin/css/login.css" %}" />
+  {% endblock %}
+  {% block extrahead %}{% endblock %}
+  <style>
+    .pw-wrap { position: relative; display: flex; align-items: center; }
+    .pw-wrap input { flex: 1; padding-right: 2.5rem !important; }
+    .pw-toggle {
+      position: absolute; right: 0.6rem;
+      background: none; border: none; cursor: pointer;
+      color: #999; padding: 0.25rem;
+      display: flex; align-items: center; line-height: 1;
+    }
+    .pw-toggle:hover { color: #444; }
+    .pw-toggle svg { width: 18px; height: 18px; display: block; }
+    .icon-eye-off { display: none; }
+    .pw-toggle.is-visible .icon-eye     { display: none; }
+    .pw-toggle.is-visible .icon-eye-off { display: block; }
+  </style>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}login{% endblock %}">
+
+  {% include "icons_sprite.html" %}
+
+  {% block nav-global %}{% endblock %}
+
+  <div id="container">
+
+    {% block header %}
+    <div id="header">
+      <div id="branding">
+        {% block branding %}
+        <a href="{% url 'admin:index' %}">
+          <h1 id="site-name">{% trans "Django administration" %}</h1>
+        </a>
+        {% endblock %}
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block messages %}
+      {% if messages %}
+        <ul class="messagelist">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endblock %}
+
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+      {% block pretitle %}{% endblock %}
+      {% block content_title %}<h1>{% trans "Django administration" %}</h1>{% endblock %}
+      {% block content %}
+      {% block form %}
+      {% if form.errors and not form.non_field_errors %}
+        <p class="errornote">
+          {% blocktrans count counter=form.errors.items|length %}
+            Please correct the error below.
+          {% plural %}
+            Please correct the errors below.
+          {% endblocktrans %}
+        </p>
+      {% endif %}
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <p class="errornote">{{ error }}</p>
+        {% endfor %}
+      {% endif %}
+      <div id="content-main">
+        <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+          <div class="form-row">
+            {{ form.username.errors }}
+            <label for="{{ form.username.id_for_label }}" class="required">{% trans "Username" %}</label>
+            {{ form.username }}
+          </div>
+          <div class="form-row">
+            {{ form.password.errors }}
+            <label for="{{ form.password.id_for_label }}" class="required">{% trans "Password" %}</label>
+            <div class="pw-wrap">
+              {{ form.password }}
+              <button type="button" class="pw-toggle" aria-label="{% trans 'Show password' %}">
+                <svg class="icon-eye" aria-hidden="true"><use href="#icon-eye"></use></svg>
+                <svg class="icon-eye-off" aria-hidden="true"><use href="#icon-eye-off"></use></svg>
+              </button>
+            </div>
+          </div>
+          {% url 'admin:password_change' as password_change_url %}
+          {% if password_change_url %}
+            <div class="password-reset-link">
+              <a href="{{ password_change_url }}">{% trans "Forgotten your password or username?" %}</a>
+            </div>
+          {% endif %}
+          <div class="submit-row">
+            <label>&nbsp;</label>
+            <input type="hidden" name="next" value="{{ next }}" />
+            <input type="submit" value="{% trans "Log in" %}" />
+          </div>
+        </form>
+      </div>
+      {% endblock %}
+      {% endblock %}
+    </div>
+    {% block footer %}<div id="footer"></div>{% endblock %}
+  </div>
+
+  <script>
+    (function () {
+      var pwField = document.getElementById('id_password');
+      var btn = document.querySelector('.pw-toggle');
+      if (!pwField || !btn) return;
+      btn.addEventListener('click', function () {
+        var visible = pwField.type === 'text';
+        pwField.type = visible ? 'password' : 'text';
+        btn.classList.toggle('is-visible', !visible);
+        btn.setAttribute('aria-label', visible ? 'Show password' : 'Hide password');
+      });
+    })();
+  </script>
+
+</body>
+</html>

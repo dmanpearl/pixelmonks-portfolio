@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact — Pixelmonks{% endblock %}
+
+{% block content %}
+<div class="contact-wrap">
+
+  <div class="terminal-window contact-terminal">
+    <div class="terminal-bar">
+      <div class="traffic-lights" aria-hidden="true">
+        <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
+      </div>
+      <span class="terminal-title">dmanpearl — send-message</span>
+    </div>
+    <div class="terminal-body">
+      <div class="t-line">
+        <span class="t-prompt">→</span>
+        <span class="t-cmd">compose --to dmanpearl@pixelmonks.com</span>
+      </div>
+
+      <form method="post" class="contact-form" novalidate>
+        {% csrf_token %}
+
+        {# name #}
+        <div class="form-field {% if form.name.errors %}form-field--error{% endif %}">
+          <label class="form-label" for="{{ form.name.id_for_label }}">
+            <span class="t-prompt">→</span>
+            <span class="about-key">{{ form.name.label|lower }}</span>
+          </label>
+          {{ form.name }}
+          {% for error in form.name.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+        </div>
+
+        {# email #}
+        <div class="form-field {% if form.email.errors %}form-field--error{% endif %}">
+          <label class="form-label" for="{{ form.email.id_for_label }}">
+            <span class="t-prompt">→</span>
+            <span class="about-key">{{ form.email.label|lower }}</span>
+          </label>
+          {{ form.email }}
+          {% for error in form.email.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+        </div>
+
+        {# phone + method on the same row #}
+        <div class="form-field form-field--phone-row {% if form.phone.errors or form.contact_method.errors %}form-field--error{% endif %}">
+          <label class="form-label" for="{{ form.phone.id_for_label }}">
+            <span class="t-prompt">→</span>
+            <span class="about-key">phone</span>
+            <span class="form-label-hint">(optional)</span>
+          </label>
+          <div class="phone-row">
+            {{ form.phone }}
+            {{ form.contact_method }}
+          </div>
+          {% for error in form.phone.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+        </div>
+
+        {# message #}
+        <div class="form-field {% if form.message.errors %}form-field--error{% endif %}">
+          <label class="form-label" for="{{ form.message.id_for_label }}">
+            <span class="t-prompt">→</span>
+            <span class="about-key">{{ form.message.label|lower }}</span>
+          </label>
+          {{ form.message }}
+          {% for error in form.message.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+        </div>
+
+        {# Honeypot — hidden from real users, traps bots #}
+        <div class="visually-hidden" aria-hidden="true">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-submit">
+            <span class="t-prompt">→</span> send message
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

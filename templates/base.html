@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Pixelmonks — David Manpearl{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Full-stack developer specializing in backend architecture and user experience. Websites, APIs, mobile and desktop apps.{% endblock %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}" />
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  {% include "icons_sprite.html" %}
+
+  <nav class="site-nav">
+    <div class="nav-left">
+      <div class="traffic-lights" aria-hidden="true">
+        <span class="tl tl-r"></span>
+        <span class="tl tl-y"></span>
+        <span class="tl tl-g"></span>
+      </div>
+      <a href="{% url 'portfolio:project_list' %}" class="logo">
+        <span class="logo-prefix">~/</span><span class="logo-name">pixelmonks</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="{% url 'portfolio:project_list' %}" {% if request.resolver_match.url_name == 'project_list' %}class="active-link"{% endif %}>work</a></li>
+      <li><a href="{% url 'portfolio:project_list' %}#about">about</a></li>
+      <li><a href="{% url 'portfolio:contact' %}" class="nav-pill {% if request.resolver_match.url_name == 'contact' %}nav-pill--active{% endif %}">contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message message--{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-copy">© {% now "Y" %} Pixelmonks, LLC</span>
+    <span class="footer-email">
+      <span class="t-prompt">→</span>
+      <a href="mailto:dmanpearl@pixelmonks.com">dmanpearl@pixelmonks.com</a>
+    </span>
+  </footer>
+
+  <script src="{% static 'portfolio/js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

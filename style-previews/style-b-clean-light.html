@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style B — Clean Light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #f8f8f6;
+      --bg2:     #f0f0ee;
+      --white:   #ffffff;
+      --ink:     #111111;
+      --ink2:    #333333;
+      --muted:   #888888;
+      --border:  #e0e0dc;
+      --orange:  #f97316;
+      --orange2: #ea6a0a;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--ink);
+      color: var(--white) !important;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.02em;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 3rem 4rem;
+      max-width: 800px;
+    }
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--orange);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-size: clamp(2.75rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--orange); }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--ink2); }
+    .btn-secondary {
+      color: var(--muted);
+      font-size: 0.875rem;
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 3rem;
+    }
+
+    /* CAROUSEL */
+    .carousel-section { padding: 3rem 3rem 2rem; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-size: 0.7rem;
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .carousel-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .carousel-img {
+      height: 360px;
+      background: linear-gradient(135deg, #f0f0ee 0%, #e8e4e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .carousel-meta {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+    }
+    .carousel-meta h2 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    .carousel-meta p { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .carousel-nav { display: flex; gap: 0.5rem; }
+    .carousel-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--ink);
+      transition: background 0.15s;
+    }
+    .carousel-btn:hover { background: var(--bg); }
+
+    /* THUMBNAIL STRIP */
+    .thumb-strip {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem 3rem 0;
+    }
+    .thumb {
+      flex: 1;
+      height: 72px;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      transition: border-color 0.15s;
+      background: var(--bg2);
+    }
+    .thumb.active { border-color: var(--orange); }
+    .thumb:hover { border-color: var(--border); }
+
+    /* CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      padding: 2rem 3rem 4rem;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--orange);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.2s;
+    }
+    .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .card:hover::after { transform: scaleY(1); }
+    .card-img {
+      height: 150px;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .card-body { padding: 1.25rem; }
+    .card-url {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .card-title { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--bg2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .card-footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ABOUT */
+    .about {
+      background: var(--ink);
+      color: var(--white);
+      padding: 3rem;
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+    .about h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .about p { color: rgba(255,255,255,0.55); font-size: 0.875rem; line-height: 1.6; }
+    .about a { color: var(--orange); text-decoration: none; }
+
+    .style-badge {
+      position: fixed;
+      top: 1rem; right: 1rem;
+      background: var(--orange);
+      color: #fff;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="style-badge">Style B — Clean Light</div>
+
+  <nav>
+    <div class="logo">Pixel<span>monks</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Work</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-label">// David Manpearl · Full-Stack Developer</div>
+    <h1>Backend craft,<br /><em>pixel</em> perfect.</h1>
+    <p>Websites, APIs, and apps — built solo from architecture to interface. Based at Pixelmonks, LLC.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">See the Work</a>
+      <a href="#" class="btn-secondary">Get in touch →</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="carousel-section">
+    <div class="section-header">
+      <div class="section-title">// Featured Project</div>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel-img">[ Project Screenshot ]</div>
+      <div class="carousel-meta">
+        <div>
+          <h2>RatingRanch.com</h2>
+          <p>Sports ratings platform · Django · PostgreSQL · Pandas · 100% solo</p>
+        </div>
+        <div class="carousel-nav">
+          <div class="carousel-btn">←</div>
+          <div class="carousel-btn">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="thumb-strip">
+    <div class="thumb active">RatingRanch</div>
+    <div class="thumb">BreakingNews</div>
+    <div class="thumb">LASurfing</div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-img">screenshot</div>
+      <div class="card-body">
+        <a href="#" class="card-url">ratingranch.com ↗</a>
+        <div class="card-title">RatingRanch.com</div>
+        <div class="card-desc">Sports ratings platform with data import, analytics, and public leaderboards.</div>
+        <div class="tags">
+          <span class="tag">Django</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">OpenPyXL</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>100% solo</span>
+        <span>GitHub ↗</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">screenshot</div>
+      <div class="card-body">
+        <a href="#" class="card-url">breakingnewsguys.com ↗</a>
+        <div class="card-title">BreakingNewsGuys.com</div>
+        <div class="card-desc">Real-time broadcast management system dispatching alerts to Discord and Slack.</div>
+        <div class="tags">
+          <span class="tag">Django</span>
+          <span class="tag">Cloudinary</span>
+          <span class="tag">ASGI</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>100% solo</span>
+        <span>GitHub ↗</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">screenshot</div>
+      <div class="card-body">
+        <a href="#" class="card-url">lasurfing.school ↗</a>
+        <div class="card-title">LAsurfing.school</div>
+        <div class="card-desc">Marketing and booking site for surf instructors with Stripe payment integration.</div>
+        <div class="tags">
+          <span class="tag">Django</span>
+          <span class="tag">Stripe</span>
+          <span class="tag">Resend</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>100% solo</span>
+        <span>—</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about">
+    <div class="about-avatar">DM</div>
+    <div>
+      <h3>David Manpearl · Pixelmonks, LLC</h3>
+      <p>Full-stack developer specializing in backend systems and user experience. Websites, APIs, mobile, hybrid, and desktop apps. <a href="mailto:dmanpearl@pixelmonks.com">dmanpearl@pixelmonks.com</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

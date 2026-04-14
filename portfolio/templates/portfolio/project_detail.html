@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ project.name }} — Pixelmonks{% endblock %}
+{% block meta_description %}{{ project.description|truncatewords:30 }}{% endblock %}
+
+{% block content %}
+<div class="detail-wrap">
+
+  <div class="detail-breadcrumb">
+    <span class="t-prompt">→</span>
+    <a href="{% url 'portfolio:project_list' %}">~/projects</a>
+    <span class="t-muted">/</span>
+    <span class="t-violet">{{ project.slug }}</span>
+  </div>
+
+  {# ── HERO IMAGE — show only the hero type, uncropped ── #}
+  {% for img in project.images.all %}
+    {% if img.image_type == 'hero' %}
+      <div class="detail-hero">
+        <img src="{{ img.url }}" alt="{{ project.name }} — hero screenshot" />
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="detail-grid">
+
+    {# ── LEFT: INFO ── #}
+    <div class="detail-info">
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <div class="traffic-lights" aria-hidden="true">
+            <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
+          </div>
+          <span class="terminal-title">{{ project.slug }}/README</span>
+        </div>
+        <div class="terminal-body terminal-body--detail">
+          <div class="t-line">
+            <span class="t-prompt">→</span>
+            <span class="t-cmd">cat project.json</span>
+          </div>
+
+          {# Logo beside name if available #}
+          {% for img in project.images.all %}{% if img.image_type == 'thumbnail' %}
+          <div class="detail-field detail-field--name">
+            <img src="{{ img.url }}" alt="{{ project.name }} logo" class="detail-logo" />
+            <div>
+              <div class="about-key">name</div>
+              <div class="about-val" style="font-size:1rem;font-weight:700">{{ project.name }}</div>
+            </div>
+          </div>
+          {% endif %}{% endfor %}
+
+          {# Fallback: no thumbnail #}
+          {% with has_thumb=project.images.all|length %}
+          {% for img in project.images.all %}{% if img.image_type == 'thumbnail' %}{% with found=True %}{% endwith %}{% endif %}{% endfor %}
+          {% endwith %}
+
+          {% if project.url %}
+          <div class="detail-field">
+            <span class="about-key">url</span>
+            <a href="{{ project.url }}" class="about-link" target="_blank" rel="noopener noreferrer">
+              {{ project.display_url }} ↗
+            </a>
+          </div>
+          {% endif %}
+
+          {% if project.github_url %}
+          <div class="detail-field">
+            <span class="about-key">github</span>
+            <a href="{{ project.github_url }}" class="about-link" target="_blank" rel="noopener noreferrer">
+              {{ project.github_url }} ↗
+            </a>
+          </div>
+          {% endif %}
+
+          <div class="detail-field">
+            <span class="about-key">involvement</span>
+            <span class="about-val">{{ project.involvement_percent }}% solo</span>
+          </div>
+
+          <div class="detail-field detail-field--stack">
+            <span class="about-key">tech_stack</span>
+            <ul class="tags tags--detail">
+              {% for item in project.tech_stack.all %}
+                <li class="tag">{{ item.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="t-line" style="margin-top:1.25rem">
+            <span class="t-prompt">→</span>
+            <span class="t-cmd">cat description.txt</span>
+          </div>
+          <p class="detail-desc">{{ project.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    {# ── RIGHT: SCREENSHOTS (exclude hero and thumbnail — already shown above) ── #}
+    <div class="detail-screenshots">
+      {% for img in project.images.all %}
+        {% if img.image_type == 'screenshot' or img.image_type == 'mobile' %}
+          <figure class="screenshot">
+            <img src="{{ img.url }}" alt="{{ img.caption|default:project.name }}" loading="lazy" />
+            {% if img.caption %}
+              <figcaption class="t-muted">{{ img.caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <div class="detail-back">
+    <a href="{% url 'portfolio:project_list' %}" class="btn-back">
+      <span class="t-prompt">←</span> back to projects
+    </a>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% load static %}
+{% if projects %}
+<section class="carousel-section" aria-label="Featured projects">
+
+  <div class="section-label">
+    <span class="t-prompt">→</span> open ./projects/featured
+  </div>
+
+  <div class="carousel-wrap" id="carousel">
+    {% for project in projects %}
+    <div class="carousel-slide {% if forloop.first %}carousel-slide--active{% endif %}" data-index="{{ forloop.counter0 }}">
+      <div class="carousel-img">
+        {% with hero=project.images.all|first %}
+          {% if hero %}
+            <img src="{{ hero.url }}" alt="{{ project.name }}" />
+          {% else %}
+            <div class="carousel-img-placeholder">[ {{ project.name }} ]</div>
+          {% endif %}
+        {% endwith %}
+      </div>
+      <div class="carousel-meta">
+        <div class="carousel-meta-left">
+          <h2 class="carousel-title">{{ project.name }}</h2>
+          <p class="carousel-subtitle">
+            {% for item in project.tech_stack.all %}{{ item.name }}{% if not forloop.last %} &nbsp;·&nbsp; {% endif %}{% endfor %}
+            &nbsp;·&nbsp; {{ project.involvement_percent }}% solo
+          </p>
+        </div>
+        <div class="carousel-actions">
+          {% if project.url %}
+            <a href="{{ project.url }}" class="btn-visit" target="_blank" rel="noopener noreferrer">
+              Visit {{ project.display_url }} ↗
+            </a>
+          {% endif %}
+          <a href="{% url 'portfolio:project_detail' project.slug %}" class="btn-detail">View details</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="carousel-controls">
+    <div class="carousel-dots" role="tablist" aria-label="Project slides">
+      {% for project in projects %}
+        <button class="dot {% if forloop.first %}dot--active{% endif %}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-label="{{ project.name }}"
+                data-target="{{ forloop.counter0 }}">
+        </button>
+      {% endfor %}
+    </div>
+    <div class="carousel-nav-btns">
+      <button class="carousel-btn" id="carousel-prev" aria-label="Previous project">←</button>
+      <button class="carousel-btn" id="carousel-next" aria-label="Next project">→</button>
+    </div>
+  </div>
+
+  <div class="thumb-strip" role="tablist" aria-label="Select project">
+    {% for project in projects %}
+      <button class="thumb {% if forloop.first %}thumb--active{% endif %}"
+              role="tab"
+              data-target="{{ forloop.counter0 }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+        {{ project.slug }}
+      </button>
+    {% endfor %}
+  </div>
+
+</section>
+{% endif %}

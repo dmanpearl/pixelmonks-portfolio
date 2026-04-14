@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style D — Gradient Surge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f172a;
+      --bg2:      #1e293b;
+      --bg3:      #263347;
+      --border:   rgba(255,255,255,0.08);
+      --text:     #f1f5f9;
+      --muted:    #64748b;
+      --muted2:   #94a3b8;
+      --purple:   #7c3aed;
+      --pink:     #ec4899;
+      --orange:   #f97316;
+      --grad:     linear-gradient(135deg, #7c3aed, #ec4899, #f97316);
+      --grad2:    linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+      --grad3:    linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Mesh gradient bg */
+    .mesh-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .mesh-bg::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -10%;
+      width: 60%;
+      height: 70%;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%);
+      animation: meshFloat 12s ease-in-out infinite alternate;
+    }
+    .mesh-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      right: -10%;
+      width: 55%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba(249,115,22,0.14) 0%, transparent 70%);
+      animation: meshFloat 10s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes meshFloat {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(4%, 5%) scale(1.06); }
+    }
+
+    /* All content above mesh */
+    nav, main, .about { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(15,23,42,0.8);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .logo-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--muted2); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-pill {
+      background: var(--grad2);
+      color: #fff !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-weight: 600 !important;
+      font-size: 0.8rem !important;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 6rem 3rem 4rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: #a78bfa;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #a78bfa; }
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--muted2);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.65;
+    }
+    .hero-ctas { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .btn-grad {
+      background: var(--grad);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-grad:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted2);
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 2.5rem 3rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-top: 0.2rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* FEATURED */
+    .featured { padding: 3rem 3rem 2rem; }
+    .section-header { margin-bottom: 1.5rem; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .section-title { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; }
+    .carousel-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+    }
+    .carousel-img {
+      height: 360px;
+      background: linear-gradient(135deg, #1a0533 0%, #0f172a 40%, #1a0a00 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .carousel-info {
+      padding: 2.5rem;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .carousel-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(124,58,237,0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(124,58,237,0.25);
+      margin-bottom: 1rem;
+    }
+    .carousel-info h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .carousel-info p { color: var(--muted2); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem; }
+    .carousel-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+    .c-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: var(--bg3);
+      color: var(--muted2);
+      border: 1px solid var(--border);
+    }
+    .carousel-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+    .btn-visit {
+      background: var(--grad2);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-align: center;
+    }
+    .carousel-dots {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 100px; background: var(--muted); cursor: pointer; transition: all 0.2s; }
+    .dot.active { width: 20px; background: var(--purple); }
+
+    /* CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      padding: 0 3rem 4rem;
+    }
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .card-top-bar {
+      height: 3px;
+    }
+    .card:nth-child(1) .card-top-bar { background: var(--grad2); }
+    .card:nth-child(2) .card-top-bar { background: var(--grad3); }
+    .card:nth-child(3) .card-top-bar { background: linear-gradient(135deg, #06b6d4, #7c3aed); }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .card-img {
+      height: 155px;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .card-body { padding: 1.35rem; }
+    .card-title { font-size: 1rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+    .card-url {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+      display: block;
+    }
+    .card-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.55; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.6rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: var(--bg3);
+      color: var(--muted2);
+      border: 1px solid var(--border);
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1.35rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.72rem;
+    }
+    .involvement {
+      color: var(--muted);
+    }
+    .involvement-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .bar-track {
+      width: 48px;
+      height: 4px;
+      background: var(--bg3);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .bar-fill { height: 100%; background: var(--grad2); border-radius: 100px; }
+
+    /* ABOUT */
+    .about {
+      padding: 3rem;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .about-inner {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .about-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--grad);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+    .about h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+    .about p { color: var(--muted2); font-size: 0.875rem; line-height: 1.6; }
+
+    .style-badge {
+      position: fixed;
+      top: 1rem; right: 1rem;
+      background: var(--grad);
+      color: #fff;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mesh-bg"></div>
+  <div class="style-badge">Style D — Gradient Surge</div>
+
+  <nav>
+    <div class="logo"><span class="logo-text">Pixelmonks</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Work</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#" class="nav-pill">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Available for new projects
+    </div>
+    <h1>Building the web,<br /><span class="grad-text">front to back.</span></h1>
+    <p>David Manpearl · Full-stack developer specializing in backend architecture and pixel-perfect user experiences.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-grad">See the Work</a>
+      <a href="#" class="btn-ghost">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Live Projects</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Solo Built</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+  </div>
+
+  <div class="featured">
+    <div class="section-header">
+      <div class="section-label">Featured Project</div>
+      <div class="section-title">Latest Work</div>
+    </div>
+    <div class="carousel-card">
+      <div class="carousel-img">[ Project Screenshot ]</div>
+      <div class="carousel-info">
+        <div>
+          <div class="carousel-tag">Live · 100% Solo</div>
+          <h2>RatingRanch.com</h2>
+          <p>Sports ratings platform with data import via Excel, Pandas analytics, and public leaderboards.</p>
+          <div class="carousel-tags">
+            <span class="c-tag">Django</span>
+            <span class="c-tag">PostgreSQL</span>
+            <span class="c-tag">Pandas</span>
+            <span class="c-tag">OpenPyXL</span>
+            <span class="c-tag">Python</span>
+          </div>
+        </div>
+        <div>
+          <div class="carousel-actions">
+            <a href="#" class="btn-visit">Visit ratingranch.com ↗</a>
+          </div>
+          <div class="carousel-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-top-bar"></div>
+      <div class="card-img">screenshot</div>
+      <div class="card-body">
+        <div class="card-title">RatingRanch.com</div>
+        <div class="card-url">ratingranch.com</div>
+        <div class="card-desc">Sports ratings platform with data import, analytics, and public leaderboards.</div>
+        <div class="tags">
+          <span class="tag">Django</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">OpenPyXL</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="involvement">Solo</span>
+        <div class="involvement-bar">
+          <span style="font-size:0.7rem;color:var(--muted)">100%</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top-bar"></div>
+      <div class="card-img">screenshot</div>
+      <div class="card-body">
+        <div class="card-title">BreakingNewsGuys.com</div>
+        <div class="card-url">breakingnewsguys.com</div>
+        <div class="card-desc">Real-time broadcast management for Discord and Slack alert dispatching.</div>
+        <div class="tags">
+          <span class="tag">Django</span>
+          <span class="tag">ASGI</span>
+          <span class="tag">Cloudinary</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="involvement">Solo</span>
+        <div class="involvement-bar">
+          <span style="font-size:0.7rem;color:var(--muted)">100%</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top-bar"></div>
+      <div class="card-img">screenshot</div>
+      <div class="card-body">
+        <div class="card-title">LAsurfing.school</div>
+        <div class="card-url">lasurfing.school</div>
+        <div class="card-desc">Surf instructor booking site with Stripe payments and email notifications.</div>
+        <div class="tags">
+          <span class="tag">Django</span>
+          <span class="tag">Stripe</span>
+          <span class="tag">Resend</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="involvement">Solo</span>
+        <div class="involvement-bar">
+          <span style="font-size:0.7rem;color:var(--muted)">100%</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about">
+    <div class="about-inner">
+      <div class="about-avatar">DM</div>
+      <div>
+        <h3>David Manpearl · Pixelmonks, LLC</h3>
+        <p>Full-stack developer specializing in backend systems and user experience. Building websites, APIs, mobile, hybrid, and desktop applications. dmanpearl@pixelmonks.com</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

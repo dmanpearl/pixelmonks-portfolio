@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pixelmonks — Portfolio{% endblock %}
+
+{% block content %}
+
+  {# ── HERO ── #}
+  <div class="hero-wrap">
+    <div class="terminal-window">
+      <div class="terminal-bar">
+        <div class="traffic-lights" aria-hidden="true">
+          <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
+        </div>
+        <span class="terminal-title">dmanpearl — pixelmonks-portfolio — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line">
+          <span class="t-prompt">→</span>
+          <span class="t-cmd">whoami</span>
+        </div>
+        <span class="t-output">David Manpearl &nbsp;·&nbsp; <span class="t-violet">Pixelmonks, LLC</span></span>
+
+        <div class="t-line">
+          <span class="t-prompt">→</span>
+          <span class="t-cmd">cat ./tagline</span>
+        </div>
+        <span class="t-output t-output--big">
+          Backend craft,<br />
+          <span class="grad-text">pixel perfect.</span>
+        </span>
+
+        <div class="t-line">
+          <span class="t-prompt">→</span>
+          <span class="t-cmd">describe --brief</span>
+        </div>
+        <span class="t-output">Full-stack · backend specialist · UX focused</span>
+        <span class="t-output">Websites &nbsp;·&nbsp; APIs &nbsp;·&nbsp; Mobile &nbsp;·&nbsp; Hybrid &nbsp;·&nbsp; Desktop</span>
+
+        <div class="t-line">
+          <span class="t-prompt">→</span>
+          <span class="t-cmd">ls ./projects/<span class="cursor" aria-hidden="true"></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ── CAROUSEL ── #}
+  {% include "portfolio/components/carousel.html" with projects=featured_projects %}
+
+  {# ── ALL PROJECTS ── #}
+  <div class="all-projects">
+    <div class="all-label">
+      <div class="all-label-left">
+        <span class="t-prompt">→</span> ls ./projects/ --all
+      </div>
+      <div class="layout-toggle" role="group" aria-label="Layout">
+        <a href="?layout=grid"
+           class="layout-btn {% if layout == 'grid' %}layout-btn--active{% endif %}"
+           aria-label="Grid view">⊞</a>
+        <a href="?layout=list"
+           class="layout-btn {% if layout == 'list' %}layout-btn--active{% endif %}"
+           aria-label="List view">☰</a>
+      </div>
+    </div>
+
+    <div class="grid grid--{{ layout }}">
+      {% for project in projects %}
+        {% include "portfolio/components/project_card.html" %}
+      {% empty %}
+        <p class="t-output">No projects yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  {# ── ABOUT ── #}
+  <section class="about" id="about">
+    <div class="about-avatar" aria-label="DM initials">DM</div>
+    <div class="about-terminal">
+      <div class="terminal-bar">
+        <div class="traffic-lights" aria-hidden="true">
+          <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
+        </div>
+        <span class="terminal-title">dmanpearl — about.json</span>
+      </div>
+      <div class="about-terminal-body">
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">name</span>
+          <span class="about-val">David Manpearl</span>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">company</span>
+          <span class="about-val">Pixelmonks, LLC</span>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">email</span>
+          <a href="mailto:dmanpearl@pixelmonks.com" class="about-link">dmanpearl@pixelmonks.com</a>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">experience</span>
+          <span class="about-val">30+ years</span>
+        </div>
+        <div class="about-line">
+          <span class="t-prompt">→</span>
+          <span class="about-key">focus</span>
+          <span class="about-val">backend · UX · APIs · mobile · desktop</span>
+        </div>
+        <div class="about-line about-line--comment">
+          <span class="t-prompt">→</span>
+          <span class="about-comment"># available for new projects</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
