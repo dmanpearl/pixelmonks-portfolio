@@ -29,9 +29,13 @@
     <div class="section-label" style="margin-bottom:0">
       <span class="t-prompt">→</span>
       {% if layout == "carousel" %}
-        <a href="{% url 'portfolio:project_detail' featured_projects.0.slug %}"
-           id="carousel-label-link"
-           class="carousel-label-text">open ./projects/{{ featured_projects.0.slug }}</a>
+        {% if featured_projects %}
+          <a href="{% url 'portfolio:project_detail' featured_projects.0.slug %}"
+             id="carousel-label-link"
+             class="carousel-label-text">open ./projects/{{ featured_projects.0.slug }}</a>
+        {% else %}
+          <span id="carousel-label-link" class="carousel-label-text">open ./projects/</span>
+        {% endif %}
       {% else %}
         <span>ls ./projects/ --{{ layout }}</span>
       {% endif %}
