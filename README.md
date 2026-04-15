@@ -10,7 +10,7 @@ source .venv/bin/activate
 pip install -r requirements-dev.txt
 
 cp .env.example .env
-# Edit .env — set SECRET_KEY and RESEND_API_KEY (see Environment Variables below)
+# Edit .env — set DJANGO_SECRET_KEY and RESEND_API_KEY (see Environment Variables below)
 
 python manage.py migrate
 python manage.py seed_projects
@@ -18,10 +18,10 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000).  
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 Admin: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
-`manage.py` defaults to `settings_dev` (SQLite, debug toolbar, `.env` loaded automatically).  
+`manage.py` defaults to `settings_dev` (SQLite, debug toolbar, `.env` loaded automatically).
 Production uses `DJANGO_SETTINGS_MODULE=pixelmonks_portfolio.settings_prod`.
 
 ## Environment Variables
@@ -30,7 +30,7 @@ Production uses `DJANGO_SETTINGS_MODULE=pixelmonks_portfolio.settings_prod`.
 
 | Variable | Required | Description |
 |---|---|---|
-| `SECRET_KEY` | Yes | Django secret key — generate with `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"` |
+| `DJANGO_SECRET_KEY` | Yes | Django secret key — generate with `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"` |
 | `RESEND_API_KEY` | Yes | From [resend.com](https://resend.com) — used by the contact form |
 
 `DJANGO_DEBUG`, `DATABASE_URL`, and `DJANGO_ALLOWED_HOST` are **not** needed in `.env` — `settings_dev.py` handles them automatically.
@@ -42,7 +42,7 @@ Set these in your Railway service's **Variables** panel:
 | Variable | Value |
 |---|---|
 | `DJANGO_SETTINGS_MODULE` | `pixelmonks_portfolio.settings_prod` |
-| `SECRET_KEY` | A strong random secret (never the dev key) |
+| `DJANGO_SECRET_KEY` | A strong random secret (never the dev key) |
 | `RESEND_API_KEY` | Your Resend API key |
 | `ALLOWED_HOSTS` | `pixelmonks.com,www.pixelmonks.com` |
 

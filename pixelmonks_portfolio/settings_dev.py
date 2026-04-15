@@ -24,4 +24,4 @@ DATABASES = {
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
-SECRET_KEY = os.getenv("SECRET_KEY", SECRET_KEY)
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", SECRET_KEY)

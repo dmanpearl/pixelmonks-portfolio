@@ -24,7 +24,9 @@
     <ul class="nav-links">
       <li><a href="{% url 'portfolio:project_list' %}" class="nav-glass-pill {% if request.resolver_match.url_name == 'project_list' %}nav-glass-pill--active{% endif %}">work</a></li>
       <li><a href="{% url 'portfolio:about' %}" class="nav-glass-pill {% if request.resolver_match.url_name == 'about' %}nav-glass-pill--active{% endif %}">about</a></li>
+      {% if site_settings.contact_enable %}
       <li><a href="{% url 'portfolio:contact' %}" class="nav-pill {% if request.resolver_match.url_name == 'contact' %}nav-pill--active{% endif %}">contact</a></li>
+      {% endif %}
     </ul>
   </nav>
 

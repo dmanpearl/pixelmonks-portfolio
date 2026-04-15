@@ -1,5 +1,7 @@
 from django.contrib import admin
-from portfolio.models import Project, TechStackItem, ProjectImage, VisitorPreference
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from portfolio.models import Project, TechStackItem, ProjectImage, SiteSettings, VisitorPreference
 
 
 class TechStackInline(admin.TabularInline):
@@ -20,6 +22,24 @@ class ProjectAdmin(admin.ModelAdmin):
     list_editable = ("is_featured", "order")
     prepopulated_fields = {"slug": ("name",)}
     inlines = [TechStackInline, ProjectImageInline]
+
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    fields = ("contact_enable",)
+
+    def has_add_permission(self, request):
+        return not SiteSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def changelist_view(self, request, extra_context=None):
+        # Skip the list — go straight to the one record (create it if missing)
+        obj = SiteSettings.get()
+        return HttpResponseRedirect(
+            reverse("admin:portfolio_sitesettings_change", args=[obj.pk])
+        )
 
 
 @admin.register(VisitorPreference)

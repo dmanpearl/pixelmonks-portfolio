@@ -2,12 +2,14 @@ import logging
 
 from django.conf import settings
 from django.contrib import messages
+from django.http import Http404
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 
 import resend
 
 from portfolio.forms import ContactForm
+from portfolio.models import SiteSettings
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +18,11 @@ class ContactView(FormView):
     template_name = "portfolio/contact.html"
     form_class = ContactForm
     success_url = reverse_lazy("portfolio:contact")
+
+    def dispatch(self, request, *args, **kwargs):
+        if not SiteSettings.get().contact_enable:
+            raise Http404
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         name = form.cleaned_data["name"]
