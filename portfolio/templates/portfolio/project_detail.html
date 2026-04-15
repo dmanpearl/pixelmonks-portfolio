@@ -8,10 +8,42 @@
 <div class="detail-wrap">
 
   <div class="detail-breadcrumb">
-    <span class="t-prompt">→</span>
-    <a href="{% url 'portfolio:project_list' %}">~/projects</a>
-    <span class="t-muted">/</span>
-    <span class="t-violet">{{ project.slug }}</span>
+    <div>
+      <span class="t-prompt">→</span>
+      <a href="{% url 'portfolio:project_list' %}">~/projects</a>
+      <span class="t-muted">/</span>
+      <span class="t-violet">{{ project.slug }}</span>
+    </div>
+    <div class="detail-nav">
+      {% if first_project %}
+        <a href="{% url 'portfolio:project_detail' first_project.slug %}" class="detail-nav-btn" title="{{ first_project.name }}">
+          <svg width="18" height="18" aria-hidden="true"><use href="#icon-first"></use></svg>
+        </a>
+      {% else %}
+        <span class="detail-nav-btn detail-nav-btn--inactive" aria-hidden="true"><svg width="18" height="18"><use href="#icon-first"></use></svg></span>
+      {% endif %}
+      {% if prev_project %}
+        <a href="{% url 'portfolio:project_detail' prev_project.slug %}" class="detail-nav-btn" title="{{ prev_project.name }}">
+          <svg width="18" height="18" aria-hidden="true"><use href="#icon-prev"></use></svg>
+        </a>
+      {% else %}
+        <span class="detail-nav-btn detail-nav-btn--inactive" aria-hidden="true"><svg width="18" height="18"><use href="#icon-prev"></use></svg></span>
+      {% endif %}
+      {% if next_project %}
+        <a href="{% url 'portfolio:project_detail' next_project.slug %}" class="detail-nav-btn" title="{{ next_project.name }}">
+          <svg width="18" height="18" aria-hidden="true"><use href="#icon-next"></use></svg>
+        </a>
+      {% else %}
+        <span class="detail-nav-btn detail-nav-btn--inactive" aria-hidden="true"><svg width="18" height="18"><use href="#icon-next"></use></svg></span>
+      {% endif %}
+      {% if last_project %}
+        <a href="{% url 'portfolio:project_detail' last_project.slug %}" class="detail-nav-btn" title="{{ last_project.name }}">
+          <svg width="18" height="18" aria-hidden="true"><use href="#icon-last"></use></svg>
+        </a>
+      {% else %}
+        <span class="detail-nav-btn detail-nav-btn--inactive" aria-hidden="true"><svg width="18" height="18"><use href="#icon-last"></use></svg></span>
+      {% endif %}
+    </div>
   </div>
 
   {# ── HERO IMAGE — show only the hero type, uncropped ── #}
@@ -113,11 +145,6 @@
 
   </div>
 
-  <div class="detail-back">
-    <a href="{% url 'portfolio:project_list' %}" class="btn-back">
-      <span class="t-prompt">←</span> back to projects
-    </a>
-  </div>
 
 </div>
 {% endblock %}

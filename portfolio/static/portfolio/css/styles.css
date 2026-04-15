@@ -922,9 +922,16 @@ img {
   font-size: 0.75rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
   margin-bottom: 1.75rem;
   color: var(--muted);
+}
+
+.detail-breadcrumb > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .detail-breadcrumb a {
@@ -1026,23 +1033,36 @@ img {
   background: var(--surface);
 }
 
-.detail-back {
-  margin-top: 1rem;
-}
-
-.btn-back {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-  display: inline-flex;
+.detail-nav {
+  display: flex;
   align-items: center;
   gap: 0.4rem;
-  transition: color 0.2s;
 }
 
-.btn-back:hover {
-  color: var(--cyan);
+.detail-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  color: var(--muted);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
+
+.detail-nav-btn:hover {
+  color: var(--text);
+  border-color: var(--violet);
+  background: var(--surface2);
+}
+
+.detail-nav-btn--inactive {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 
 /* ── CONTACT ── */
 .contact-wrap {
