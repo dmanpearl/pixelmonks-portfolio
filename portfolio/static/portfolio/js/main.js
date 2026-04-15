@@ -1,5 +1,5 @@
 /* Generic infinite carousel factory — used for both work and photo carousels */
-function makeCarousel({ outerId, trackId, slideClass, prevId, nextId, labelId, dotSelector, thumbSelector, interval }) {
+function makeCarousel({ outerId, trackId, slideClass, prevId, nextId, pauseId, labelId, dotSelector, thumbSelector, interval }) {
   const outer = document.getElementById(outerId);
   if (!outer) return;
 
@@ -7,8 +7,9 @@ function makeCarousel({ outerId, trackId, slideClass, prevId, nextId, labelId, d
   const slides = Array.from(outer.querySelectorAll("." + slideClass));
   const dots   = dotSelector   ? Array.from(document.querySelectorAll(dotSelector))   : [];
   const thumbs = thumbSelector ? Array.from(document.querySelectorAll(thumbSelector)) : [];
-  const prevBtn = document.getElementById(prevId);
-  const nextBtn = document.getElementById(nextId);
+  const prevBtn  = document.getElementById(prevId);
+  const nextBtn  = document.getElementById(nextId);
+  const pauseBtn = pauseId ? document.getElementById(pauseId) : null;
   const labelLink = labelId ? document.getElementById(labelId) : null;
 
   const total = slides.length;
@@ -89,11 +90,27 @@ function makeCarousel({ outerId, trackId, slideClass, prevId, nextId, labelId, d
   );
 
   /* Auto-advance; pause on hover */
-  let timer = setInterval(() => goTo(current + 1), interval);
-  outer.addEventListener("mouseenter", () => clearInterval(timer));
-  outer.addEventListener("mouseleave", () => {
-    timer = setInterval(() => goTo(current + 1), interval);
-  });
+  let paused = false;
+  let timer  = setInterval(() => goTo(current + 1), interval);
+
+  function setPaused(val) {
+    paused = val;
+    if (paused) {
+      clearInterval(timer);
+    } else {
+      timer = setInterval(() => goTo(current + 1), interval);
+    }
+    if (pauseBtn) {
+      const icon = paused ? "#icon-play" : "#icon-pause";
+      pauseBtn.querySelector("use").setAttribute("href", icon);
+      pauseBtn.setAttribute("aria-label", paused ? "Play slideshow" : "Pause slideshow");
+    }
+  }
+
+  pauseBtn?.addEventListener("click", () => setPaused(!paused));
+
+  outer.addEventListener("mouseenter", () => { if (!paused) clearInterval(timer); });
+  outer.addEventListener("mouseleave", () => { if (!paused) timer = setInterval(() => goTo(current + 1), interval); });
 }
 
 /* ── Work / project carousel ── */
@@ -103,6 +120,7 @@ makeCarousel({
   slideClass:    "carousel-slide",
   prevId:        "carousel-prev",
   nextId:        "carousel-next",
+  pauseId:       null,
   labelId:       "carousel-label-link",
   dotSelector:   ".carousel-dots .dot",
   thumbSelector: ".thumb-strip .thumb",
@@ -116,6 +134,7 @@ makeCarousel({
   slideClass:    "photo-carousel-slide",
   prevId:        "photo-prev",
   nextId:        "photo-next",
+  pauseId:       "photo-pause",
   labelId:       null,
   dotSelector:   null,
   thumbSelector: null,
