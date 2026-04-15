@@ -70,6 +70,29 @@ python manage.py seed_projects          # insert (skips existing slugs)
 python manage.py seed_projects --clear  # wipe all projects and re-insert
 ```
 
+## Seeding About Page Photos
+
+Photos live in `static/images/me/`. Captions are managed in `portfolio/management/commands/seed_photos.py`.
+
+```bash
+python manage.py seed_photos            # insert new photos; preserves edited captions
+python manage.py seed_photos --clear    # wipe all photos and re-insert
+```
+
+**To remove a photo:**
+1. Delete the file from `static/images/me/`
+2. Remove its entry from `seed_photos.py`
+3. Run `python manage.py seed_photos --clear` locally and on Railway
+
+**Caption editing:** Edit the `caption` field in Admin → Photos. The `auto_caption` field
+is the seed default — re-running `seed_photos` updates `auto_caption` but never overwrites
+your edited `caption`.
+
+**On Railway after changes:**
+```bash
+railway run python manage.py seed_photos --clear
+```
+
 ## Adding a New Portfolio Project
 
 ### 1. Add static images
@@ -161,6 +184,7 @@ portfolio/
   management/commands/
     runserver.py        Suppresses the dev-server production warning
     seed_projects.py    Seed initial project data
+    seed_photos.py      Seed about page photo carousel
 
 templates/
   base.html             Global layout: nav, footer, Google Fonts

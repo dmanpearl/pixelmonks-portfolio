@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from portfolio.models import Project, TechStackItem, ProjectImage, SiteSettings, VisitorPreference
+from portfolio.models import Photo, Project, TechStackItem, ProjectImage, SiteSettings, VisitorPreference
 
 
 class TechStackInline(admin.TabularInline):
@@ -22,6 +22,13 @@ class ProjectAdmin(admin.ModelAdmin):
     list_editable = ("is_featured", "order")
     prepopulated_fields = {"slug": ("name",)}
     inlines = [TechStackInline, ProjectImageInline]
+
+
+@admin.register(Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ("auto_caption", "caption", "order")
+    list_editable = ("caption", "order")
+    ordering = ("order",)
 
 
 @admin.register(SiteSettings)

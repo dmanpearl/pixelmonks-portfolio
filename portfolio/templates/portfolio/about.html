@@ -8,9 +8,6 @@
 
   <div class="terminal-window about-terminal-window">
     <div class="terminal-bar">
-      <div class="traffic-lights" aria-hidden="true">
-        <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
-      </div>
       <span class="terminal-title">dmanpearl — about.json</span>
     </div>
     <div class="about-body">
@@ -51,6 +48,27 @@
 
     </div>
   </div>
+
+
+  {# ── PHOTO CAROUSEL ── #}
+  {% if photos %}
+  <div class="photo-carousel-wrap">
+    <div class="photo-carousel-controls">
+      <button class="carousel-btn" id="photo-prev" aria-label="Previous photo">←</button>
+      <button class="carousel-btn" id="photo-next" aria-label="Next photo">→</button>
+    </div>
+    <div class="photo-carousel-outer" id="photo-carousel">
+      <div class="photo-carousel-track" id="photo-carousel-track">
+        {% for photo in photos %}
+        <div class="photo-carousel-slide">
+          <img src="{% static photo.static_path %}" alt="{{ photo.display_caption }}" loading="lazy" />
+          <p class="photo-caption">{{ photo.display_caption }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
 </div>
 {% endblock %}

@@ -182,29 +182,6 @@ img {
   padding: 2rem 2.5rem;
 }
 
-/* ── Traffic lights ── */
-.traffic-lights {
-  display: flex;
-  gap: 5px;
-}
-
-.tl {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  opacity: 0.75;
-  display: inline-block;
-}
-
-.tl-r {
-  background: #ff5f57;
-}
-.tl-y {
-  background: #febc2e;
-}
-.tl-g {
-  background: #28c840;
-}
 
 /* ── NAV ── */
 .site-nav {
@@ -1063,6 +1040,53 @@ img {
   pointer-events: none;
 }
 
+
+/* ── PHOTO CAROUSEL (about page) ── */
+.photo-carousel-wrap {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.photo-carousel-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-bottom: 0.6rem;
+}
+
+.photo-carousel-outer {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+}
+
+.photo-carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.photo-carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.photo-carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-caption {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border);
+}
 
 /* ── CONTACT ── */
 .contact-wrap {
