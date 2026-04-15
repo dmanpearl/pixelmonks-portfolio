@@ -63,6 +63,28 @@ black <file>.py               # Python
 npx prettier --write <file>   # HTML / CSS
 ```
 
+## Testing
+
+```bash
+python manage.py test portfolio.tests                               # run all tests
+python manage.py test portfolio.tests --verbosity=2                 # verbose output
+python manage.py test portfolio.tests.test_seed_photos              # photo tests only
+python manage.py test portfolio.tests.test_seed_projects            # project tests only
+```
+
+Tests use `SimpleTestCase` (no database required) and run in milliseconds.
+
+### What's tested
+
+| Test | What it checks |
+|------|---------------|
+| `test_seed_photos.test_no_missing_images` | Every `static_path` in `seed_photos.PHOTOS` exists on disk |
+| `test_seed_photos.test_no_unreferenced_images` | Every file in `static/images/me/` is listed in `PHOTOS` |
+| `test_seed_projects.test_no_missing_images` | Every image path in `seed_projects.PROJECTS` exists on disk |
+| `test_seed_projects.test_no_unreferenced_images` | Every file under `portfolio/static/portfolio/images/projects/` is listed in `PROJECTS` |
+
+Run these tests whenever you add, rename, or remove a project image or photo.
+
 ## Seeding Projects
 
 ```bash
