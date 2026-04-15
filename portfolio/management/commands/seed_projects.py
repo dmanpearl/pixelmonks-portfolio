@@ -19,13 +19,19 @@ PROJECTS = [
             "Sports ratings platform featuring data import via Excel spreadsheets, "
             "Pandas-powered analytics, and public leaderboards. Built for the Alliance "
             "Sports organisation to manage and publish competitive ratings across multiple "
-            "divisions."
+            "Basketball, Hockey, and Baseball divisions."
         ),
         "involvement_percent": 100,
         "is_featured": True,
         "order": 1,
         "tech_stack": [
-            "Python", "Django", "PostgreSQL", "Pandas", "OpenPyXL", "FastAPI", "httpx",
+            "Python",
+            "Django",
+            "PostgreSQL",
+            "Pandas",
+            "OpenPyXL",
+            "FastAPI",
+            "httpx",
         ],
         "images": [
             {
@@ -48,15 +54,22 @@ PROJECTS = [
         "url": "https://breakingnewsguys.com",
         "github_url": "",
         "description": (
-            "ASGI broadcast management system for a news team. Editors compose messages "
-            "and dispatch them simultaneously to Discord webhooks and Slack via Bot Token "
-            "API, with media uploads handled through Cloudinary."
+            "Breaking News broadcasting platform for a stock based news team. "
+            "Editors compose messages and dispatch them simulataneously to multiple clients "
+            "including Asynchronous Server Gateway Interface (ASGI) API streaming endpoints, "
+            "Discord webhooks, and Slack messages. Supports binary attachments, media uploads, "
+            "API documentation via FastAPI and Swagger, and example clients"
         ),
         "involvement_percent": 100,
         "is_featured": True,
         "order": 2,
         "tech_stack": [
-            "Python", "Django", "PostgreSQL", "ASGI", "Cloudinary", "FastAPI",
+            "Python",
+            "Django",
+            "PostgreSQL",
+            "ASGI",
+            "Cloudinary",
+            "FastAPI",
         ],
         "images": [
             {
@@ -81,13 +94,17 @@ PROJECTS = [
         "description": (
             "Marketing and lesson-booking website for a Los Angeles surf instructor. "
             "Integrates Stripe for payment processing and Resend for transactional "
-            "booking confirmation emails."
+            "booking confirmation emails, and a state-of-the-art 5-star rating system."
         ),
         "involvement_percent": 100,
         "is_featured": True,
         "order": 3,
         "tech_stack": [
-            "Python", "Django", "PostgreSQL", "Stripe", "Resend",
+            "Python",
+            "Django",
+            "PostgreSQL",
+            "Stripe",
+            "Resend",
         ],
         "images": [
             {
@@ -111,7 +128,9 @@ class Command(BaseCommand):
     help = "Seed the database with initial portfolio projects"
 
     def add_arguments(self, parser):
-        parser.add_argument("--clear", action="store_true", help="Delete all projects before seeding")
+        parser.add_argument(
+            "--clear", action="store_true", help="Delete all projects before seeding"
+        )
 
     def handle(self, *args, **options):
         if options["clear"]:
