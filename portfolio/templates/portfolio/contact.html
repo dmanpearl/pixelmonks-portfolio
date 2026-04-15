@@ -12,7 +12,6 @@
     </div>
     <div class="terminal-body">
       <div class="t-line">
-        <span class="t-prompt">→</span>
         <span class="t-cmd">compose --to dmanpearl@pixelmonks.com</span>
       </div>
 
@@ -22,7 +21,7 @@
         {# name #}
         <div class="form-field {% if form.name.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.name.id_for_label }}">
-            <span class="t-prompt">→</span><span class="about-key">name</span>
+            <span class="about-key">name</span>
           </label>
           {{ form.name }}
           {% for e in form.name.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
@@ -31,7 +30,7 @@
         {# email #}
         <div class="form-field {% if form.email.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.email.id_for_label }}">
-            <span class="t-prompt">→</span><span class="about-key">email</span>
+            <span class="about-key">email</span>
           </label>
           {{ form.email }}
           {% for e in form.email.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
@@ -40,7 +39,6 @@
         {# phone + method — method dropdown scoped to this field only #}
         <div class="form-field {% if form.phone.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.phone.id_for_label }}">
-            <span class="t-prompt">→</span>
             <span class="about-key">phone</span>
             <span class="form-label-hint">optional</span>
           </label>
@@ -54,7 +52,7 @@
         {# message #}
         <div class="form-field {% if form.message.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.message.id_for_label }}">
-            <span class="t-prompt">→</span><span class="about-key">message</span>
+            <span class="about-key">message</span>
           </label>
           {{ form.message }}
           {% for e in form.message.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
@@ -66,7 +64,7 @@
 
         <div class="form-submit">
           <button type="submit" class="btn-submit">
-            <span class="t-prompt">→</span> send message
+            send message
           </button>
         </div>
       </form>

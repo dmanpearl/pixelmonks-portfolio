@@ -9,7 +9,6 @@
 
   <div class="detail-breadcrumb">
     <div>
-      <span class="t-prompt">→</span>
       <a href="{% url 'portfolio:project_list' %}">~/projects</a>
       <span class="t-muted">/</span>
       <span class="t-violet">{{ project.slug }}</span>
@@ -68,7 +67,6 @@
         </div>
         <div class="terminal-body terminal-body--detail">
           <div class="t-line">
-            <span class="t-prompt">→</span>
             <span class="t-cmd">cat project.json</span>
           </div>
 
@@ -121,7 +119,6 @@
           </div>
 
           <div class="t-line" style="margin-top:1.25rem">
-            <span class="t-prompt">→</span>
             <span class="t-cmd">cat description.txt</span>
           </div>
           <p class="detail-desc">{{ project.description }}</p>
