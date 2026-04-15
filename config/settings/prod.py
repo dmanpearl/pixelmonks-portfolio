@@ -18,6 +18,7 @@ DEBUG = False
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "portfolio.middleware.WwwRedirectMiddleware",
 ] + MIDDLEWARE[1:]  # noqa: F405
 
 # Content-hash filenames enable far-future cache headers. Only safe when DEBUG=False.

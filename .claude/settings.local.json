@@ -5,7 +5,10 @@
       "Bash(curl -s -o /dev/null -w \"/ → %{http_code}\\\\n\" http://127.0.0.1:8000/)",
       "Bash(curl -s -o /dev/null -w \"/projects/rating-ranch/ → %{http_code}\\\\n\" http://127.0.0.1:8000/projects/rating-ranch/)",
       "Bash(curl -s -o /dev/null -w \"/contact/ → %{http_code}\\\\n\" http://127.0.0.1:8000/contact/)",
-      "Bash(pkill -f \"manage.py runserver\")"
+      "Bash(pkill -f \"manage.py runserver\")",
+      "WebSearch",
+      "WebFetch(domain:support.opensrs.com)",
+      "WebFetch(domain:domains.opensrs.guide)"
     ]
   }
 }
