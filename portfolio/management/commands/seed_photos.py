@@ -23,6 +23,11 @@ PHOTOS = [
         "order": 2,
     },
     {
+        "static_path": "images/me/2005_David_wins_San_Clemente_Circuit_Race_Cat_4_CA.jpg",
+        "auto_caption": "San Clemente Circuit Race, Cat 4 winner",
+        "order": 18,
+    },
+    {
         "static_path": "images/me/2018-03-14_Gnarbox_office_Santa_Monica_CA.jpg",
         "auto_caption": "Gnarbox Office, Santa Monica CA",
         "order": 3,
