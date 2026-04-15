@@ -24,6 +24,10 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # HTTPS hardening
+# Tell Django to trust Railway's reverse proxy — it terminates SSL and forwards
+# requests as plain HTTP with X-Forwarded-Proto: https. Without this,
+# SECURE_SSL_REDIRECT causes an infinite redirect loop.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_SSL_REDIRECT = True
