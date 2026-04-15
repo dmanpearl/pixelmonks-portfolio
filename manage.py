@@ -6,6 +6,12 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    # Default to dev settings for local development.
+    # setdefault() preserves an explicitly set DJANGO_SETTINGS_MODULE,
+    # so Railway's DJANGO_SETTINGS_MODULE=config.settings.prod still works.
+    # If you see 'config.settings.prod' locally despite this, the env var
+    # is set in your shell profile — find and remove it:
+    #   grep -r DJANGO_SETTINGS_MODULE ~/.zshrc ~/.bash_profile ~/.bashrc
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.dev')
     try:
         from django.core.management import execute_from_command_line
