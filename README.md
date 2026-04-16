@@ -225,3 +225,28 @@ gunicorn pixelmonks_portfolio.wsgi
 ```
 
 WhiteNoise serves all static files (including project images) — no CDN or Cloudinary required.
+
+## Release management
+
+We use 'dev' as our GitHub main branch and merge release candidates into 'master'
+
+Release are tagged off of 'master'. Annotated tags (-a) are used rather than
+default lightweight tags to store tagger, date, and message.
+
+### Command line GIT
+
+```
+git checkout master
+git pull # assumes merged
+git tag -a v1.0 -m "Relaease v1.0"
+git push origin v1.0
+```
+
+### Browser GitHub
+
+1. Repo > Releases > Create a new release
+2. Select Target: Master (must be done before selecting Tag)
+3. Select Tag: v1.0 (is already available because of previous push)
+4. Release title: v1.0
+5. Description: Generate manually
+6. Click Publish release
