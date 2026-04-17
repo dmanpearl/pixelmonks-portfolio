@@ -1073,7 +1073,9 @@ img {
 
 .photo-carousel-slide img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #000;
   display: block;
 }
 
