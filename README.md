@@ -88,8 +88,9 @@ Run these tests whenever you add, rename, or remove a project image or photo.
 ## Seeding Projects
 
 ```bash
-python manage.py seed_projects          # insert (skips existing slugs)
-python manage.py seed_projects --clear  # wipe all projects and re-insert
+python manage.py seed_projects            # insert (skips existing slugs)
+python manage.py seed_projects --override # update existing projects from seed data
+python manage.py seed_projects --clear    # wipe all projects and re-insert
 ```
 
 ## Seeding About Page Photos

@@ -127,9 +127,11 @@ PROJECTS = [
         "url": "",
         "github_url": "",
         "description": (
-            "As one for the history books, Leroy's Sports Betting App was a groundbreaking mobile platform in 2010 and "
-            "the first mobile app approved by the Nevada Gaming Control Board for "
-            "legal sports wagering, initially launching on BlackBerry and later "
+            "As one for the history books from an era when location services were not "
+            "available for browsers and smartphone location could easily be spoofed, "
+            "Leroy's Sports Betting App was a groundbreaking mobile platform in 2010 and "
+            "the first app of any kind approved by the Nevada Gaming Control Board for "
+            "legal sports wagering. It was initially launched on BlackBerry and later "
             "expanding to Android and iOS. As the sole developer, I built the app "
             "for Leroy's, a subsidiary of American Wagering, helping pioneer U.S. "
             "mobile betting and contributing to William Hill's acquisition, where "
@@ -170,6 +172,11 @@ class Command(BaseCommand):
         parser.add_argument(
             "--clear", action="store_true", help="Delete all projects before seeding"
         )
+        parser.add_argument(
+            "--override",
+            action="store_true",
+            help="Update existing projects from seed data",
+        )
 
     def handle(self, *args, **options):
         if options["clear"]:
@@ -190,6 +197,18 @@ class Command(BaseCommand):
                 for img_data in images:
                     ProjectImage.objects.create(project=project, **img_data)
                 self.stdout.write(self.style.SUCCESS(f"  Created: {project.name}"))
+            elif options["override"]:
+                for field, value in data.items():
+                    if field != "slug":
+                        setattr(project, field, value)
+                project.save()
+                project.tech_stack.all().delete()
+                for i, name in enumerate(tech):
+                    TechStackItem.objects.create(project=project, name=name, order=i)
+                project.images.all().delete()
+                for img_data in images:
+                    ProjectImage.objects.create(project=project, **img_data)
+                self.stdout.write(self.style.SUCCESS(f"  Updated: {project.name}"))
             else:
                 self.stdout.write(f"  Skipped (exists): {project.name}")
 
