@@ -147,7 +147,7 @@ PROJECTS = [
         ],
         "images": [
             {
-                "static_path": "portfolio/images/projects/leroys/screenshot.jpg",
+                "static_path": "portfolio/images/projects/leroys/screenshot.png",
                 "image_type": "hero",
                 "caption": "",
                 "order": 0,
