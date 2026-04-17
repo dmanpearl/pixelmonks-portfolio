@@ -127,7 +127,7 @@ PROJECTS = [
         "url": "",
         "github_url": "",
         "description": (
-            "Leroy's Sports Betting App was a groundbreaking mobile platform in 2010 and "
+            "As one for the history books, Leroy's Sports Betting App was a groundbreaking mobile platform in 2010 and "
             "the first mobile app approved by the Nevada Gaming Control Board for "
             "legal sports wagering, initially launching on BlackBerry and later "
             "expanding to Android and iOS. As the sole developer, I built the app "
