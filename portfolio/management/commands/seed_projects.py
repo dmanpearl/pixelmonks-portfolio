@@ -121,6 +121,45 @@ PROJECTS = [
             },
         ],
     },
+    {
+        "slug": "leroys",
+        "name": "Leroys Sports Betting App",
+        "url": "",
+        "github_url": "",
+        "description": (
+            "Leroy's Sports Betting App was a groundbreaking mobile platform in 2010 and "
+            "the first mobile app approved by the Nevada Gaming Control Board for "
+            "legal sports wagering, initially launching on BlackBerry and later "
+            "expanding to Android and iOS. As the sole developer, I built the app "
+            "for Leroy's, a subsidiary of American Wagering, helping pioneer U.S. "
+            "mobile betting and contributing to William Hill's acquisition, where "
+            "I implemented the rebranding to William Hill's mobile sportsbook "
+            "across all smartphone platforms."
+        ),
+        "involvement_percent": 100,
+        "is_featured": True,
+        "order": 4,
+        "tech_stack": [
+            "Objective-C",
+            "Android Java",
+            "J2ME",
+            "GPS Location Services",
+        ],
+        "images": [
+            {
+                "static_path": "portfolio/images/projects/leroys/screenshot.jpg",
+                "image_type": "hero",
+                "caption": "",
+                "order": 0,
+            },
+            {
+                "static_path": "portfolio/images/projects/leroys/logo.jpeg",
+                "image_type": "thumbnail",
+                "caption": "",
+                "order": 1,
+            },
+        ],
+    },
 ]
 
 
