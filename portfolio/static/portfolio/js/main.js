@@ -120,7 +120,7 @@ makeCarousel({
   slideClass:    "carousel-slide",
   prevId:        "carousel-prev",
   nextId:        "carousel-next",
-  pauseId:       null,
+  pauseId:       "carousel-pause",
   labelId:       "carousel-label-link",
   dotSelector:   ".carousel-dots .dot",
   thumbSelector: ".thumb-strip .thumb",
