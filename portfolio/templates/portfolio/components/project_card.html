@@ -1,23 +1,20 @@
 {% load static %}
 <article class="card" data-project="{{ project.slug }}">
-  <a href="{% url 'portfolio:project_detail' project.slug %}" class="card-img-link">
-    {% with hero=project.images.all|first %}
-      {% if hero %}
-        <img src="{{ hero.url }}" alt="{{ project.name }} screenshot" class="card-img" loading="lazy" />
-      {% else %}
-        <div class="card-img card-img--placeholder">
-          {{ project.slug }}/
-        </div>
-      {% endif %}
-    {% endwith %}
-  </a>
+  <a href="{% url 'portfolio:project_detail' project.slug %}" class="card-detail-link" aria-label="{{ project.name }}"></a>
+  {% with hero=project.images.all|first %}
+    {% if hero %}
+      <img src="{{ hero.url }}" alt="{{ project.name }} screenshot" class="card-img" loading="lazy" />
+    {% else %}
+      <div class="card-img card-img--placeholder">
+        {{ project.slug }}/
+      </div>
+    {% endif %}
+  {% endwith %}
   <div class="card-body">
     <div class="card-prompt">
       {{ project.slug }}/
     </div>
-    <h3 class="card-title">
-      <a href="{% url 'portfolio:project_detail' project.slug %}">{{ project.name }}</a>
-    </h3>
+    <h3 class="card-title">{{ project.name }}</h3>
     <p class="card-desc">{{ project.description|truncatewords:22 }}</p>
     <ul class="tags" aria-label="Tech stack">
       {% for item in project.tech_stack.all %}

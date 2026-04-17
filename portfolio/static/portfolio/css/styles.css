@@ -632,6 +632,7 @@ img {
 
 /* ── CARD ── */
 .card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 11px;
@@ -647,8 +648,24 @@ img {
   box-shadow: 0 0 28px rgba(124, 58, 237, 0.15), 0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
-.card-img-link {
-  display: block;
+.card-detail-link {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.card-url {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--cyan);
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+
+.card-url:hover {
+  opacity: 0.75;
 }
 
 .card-img {
@@ -704,14 +721,6 @@ img {
   margin-bottom: 0.45rem;
 }
 
-.card-title a {
-  color: var(--text);
-  transition: color 0.2s;
-}
-
-.card-title a:hover {
-  color: var(--cyan);
-}
 
 .card-desc {
   font-size: 0.8rem;
@@ -746,17 +755,6 @@ img {
   border-top: 1px solid var(--border);
 }
 
-.card-url {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--cyan);
-  font-weight: 500;
-  transition: opacity 0.15s;
-}
-
-.card-url:hover {
-  opacity: 0.75;
-}
 
 .involvement {
   font-family: var(--font-mono);
