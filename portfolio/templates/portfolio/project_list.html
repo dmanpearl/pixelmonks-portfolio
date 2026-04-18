@@ -27,17 +27,20 @@
   {# ── GALLERY CONTROLS — always visible regardless of layout ── #}
   <div class="gallery-header">
     <div class="section-label" style="margin-bottom:0">
-      {% if layout == "carousel" %}
-        {% if featured_projects %}
-          <a href="{% url 'portfolio:project_detail' featured_projects.0.slug %}"
-             id="carousel-label-link"
-             class="carousel-label-text">open ./projects/{{ featured_projects.0.slug }}</a>
+      <span class="label-desktop">
+        {% if layout == "carousel" %}
+          {% if featured_projects %}
+            <a href="{% url 'portfolio:project_detail' featured_projects.0.slug %}"
+               id="carousel-label-link"
+               class="carousel-label-text">open ./projects/{{ featured_projects.0.slug }}</a>
+          {% else %}
+            <span id="carousel-label-link" class="carousel-label-text">open ./projects/</span>
+          {% endif %}
         {% else %}
-          <span id="carousel-label-link" class="carousel-label-text">open ./projects/</span>
+          ls ./projects/ --{{ layout }}
         {% endif %}
-      {% else %}
-        <span>ls ./projects/ --{{ layout }}</span>
-      {% endif %}
+      </span>
+      <span class="label-mobile">ls ./projects/</span>
     </div>
     <div class="view-toggle" role="group" aria-label="View mode">
       <a href="?layout=carousel" class="view-btn {% if layout == 'carousel' %}view-btn--active{% endif %}" aria-label="Carousel view" title="Carousel">
@@ -52,21 +55,20 @@
     </div>
   </div>
 
-  {# ── GALLERY CONTENT ── #}
+  {# ── CAROUSEL — desktop only ── #}
   {% if layout == "carousel" %}
-
+  <div class="carousel-section">
     {% include "portfolio/components/carousel.html" with projects=featured_projects %}
-
-  {% else %}
-
-    <div class="grid grid--{{ layout }}">
-      {% for project in projects %}
-        {% include "portfolio/components/project_card.html" %}
-      {% empty %}
-        <p class="t-output">No projects yet.</p>
-      {% endfor %}
-    </div>
-
+  </div>
   {% endif %}
+
+  {# ── GRID — always rendered; hidden on desktop when carousel is active ── #}
+  <div class="grid {% if layout == 'carousel' %}grid--grid grid--carousel-hidden{% else %}grid--{{ layout }}{% endif %}">
+    {% for project in projects %}
+      {% include "portfolio/components/project_card.html" %}
+    {% empty %}
+      <p class="t-output">No projects yet.</p>
+    {% endfor %}
+  </div>
 
 {% endblock %}
