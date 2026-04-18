@@ -879,6 +879,8 @@ img {
 
 .about-val {
   color: var(--text2);
+  flex: 1;
+  min-width: 0;
 }
 
 .about-link {
@@ -1296,6 +1298,18 @@ img {
   color: var(--muted2);
   font-size: 0.65rem;
   font-style: italic;
+}
+
+@media (max-width: 700px) {
+  .contact-wrap {
+    padding: 1.25rem 1rem 2rem;
+  }
+  .phone-row {
+    flex-direction: column;
+  }
+  .phone-row select {
+    width: 100%;
+  }
 }
 
 .carousel-actions {
