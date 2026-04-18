@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "0.0.0.0",
     "pixelmonks.com",
+    "www.pixelmonks.com",
     "pixelmonks-portfolio.up.railway.app",
 ]
 _custom = os.environ.get("DJANGO_ALLOWED_HOST", "")
@@ -38,6 +39,7 @@ if _custom:
 # Required for Railway's HTTPS proxy and for CSRF to work in production.
 CSRF_TRUSTED_ORIGINS = [
     "https://pixelmonks.com",
+    "https://www.pixelmonks.com",
     "https://pixelmonks-portfolio.up.railway.app",
 ]
 if _custom:
