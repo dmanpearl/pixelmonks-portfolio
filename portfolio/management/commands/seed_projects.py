@@ -37,7 +37,7 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/rating-ranch/screenshot.png",
                 "image_type": "hero",
-                "caption": "",
+                "caption": "The team schedule displays game stats and visually indicates outcome",
                 "order": 0,
             },
             {
@@ -75,7 +75,7 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/breaking-news/screenshot.png",
                 "image_type": "hero",
-                "caption": "",
+                "caption": "New multi-media messages are immediately broadcast in real-time",
                 "order": 0,
             },
             {
@@ -110,7 +110,7 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/la-surfing-school/screenshot.png",
                 "image_type": "hero",
-                "caption": "",
+                "caption": "Website provides bookings, payments, ratings, reviews, lesson options, and messaging",
                 "order": 0,
             },
             {
@@ -118,6 +118,83 @@ PROJECTS = [
                 "image_type": "thumbnail",
                 "caption": "",
                 "order": 1,
+            },
+        ],
+    },
+    {
+        "slug": "gnarbox",
+        "name": "Gnarbox",
+        "url": "https://photographylife.com/reviews/gnarbox-2-0-ssd",
+        "github_url": "",
+        "description": (
+            "At Gnarbox, I was part of the original engineering team building a rugged, "
+            "portable media device for photographers and videographers working in the field. "
+            "I contributed across the stack, from embedded microservices on the device to "
+            "mobile app controllers, delivering high-throughput RAW and 4K media ingestion, "
+            "processing, and backup without a laptop. My work included Go services, gRPC and "
+            "Protobuf APIs, containerized components, CI/CD pipelines and DevOps practices, "
+            "and mobile development in React Native, Swift, and Android Java, along with "
+            "media pipelines using GStreamer. As the team grew to eight developers within "
+            "a 20-person company, we shipped a globally recognized product known for "
+            "performance, reliability, and innovation in extreme environments."
+        ),
+        "involvement_percent": 8,
+        "is_featured": True,
+        "order": 4,
+        "tech_stack": [
+            "Go",
+            "React Native",
+            "Docker",
+            "DevOps",
+            "CI/CD",
+            "Swift",
+            "Android Java",
+            "gRPC/Protobuf",
+            "GStreamer",
+            "Node/Typescript",
+        ],
+        "images": [
+            {
+                "static_path": "portfolio/images/projects/gnarbox/screenshot.jpg",
+                "image_type": "hero",
+                "caption": "Gnarbox was controlled via the onboard OSD or the Gnarbox Mobile App",
+                "order": 0,
+            },
+            {
+                "static_path": "portfolio/images/projects/gnarbox/logo.png",
+                "image_type": "thumbnail",
+                "caption": "",
+                "order": 1,
+            },
+            {
+                "static_path": "portfolio/images/projects/gnarbox/gnarbox_package_plus_app.png",
+                "image_type": "gallery",
+                "caption": "Retail package included the Gnarbox device and accessories",
+                "order": 2,
+            },
+            {
+                "static_path": "portfolio/images/projects/gnarbox/gnarbox_video_clip.jpg",
+                "image_type": "gallery",
+                "caption": "Video editing includes trimming, clipping, and merging of 4K footage and more",
+                "order": 3,
+            },
+            {
+                "static_path": "portfolio/images/projects/gnarbox/gnarbox_video_edit.jpeg",
+                "image_type": "gallery",
+                "caption": "Audio sync",
+                "order": 4,
+            },
+            {
+                "static_path": "portfolio/images/projects/gnarbox/gnarbox_settings.jpg",
+                "image_type": "gallery",
+                "caption": "Smart, fast, safe, secure, multi-destination, verified backup and copy options",
+                "order": 5,
+            },
+            {
+                "static_path": "portfolio/images/projects/gnarbox/gnarbox_image_gallery.jpg",
+                "image_type": "gallery",
+                "caption": "Native media browsing and fast scrolling supports 10's of thousands of thumbnails smoothly",
+                "order": 6,
             },
         ],
     },
@@ -140,7 +217,7 @@ PROJECTS = [
         ),
         "involvement_percent": 100,
         "is_featured": True,
-        "order": 4,
+        "order": 5,
         "tech_stack": [
             "Objective-C",
             "Android Java",
@@ -151,7 +228,7 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/leroys/screenshot.png",
                 "image_type": "hero",
-                "caption": "",
+                "caption": "This relic was once the most secure device on the market",
                 "order": 0,
             },
             {

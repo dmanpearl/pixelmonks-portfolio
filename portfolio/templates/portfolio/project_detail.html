@@ -54,7 +54,7 @@
     {% endif %}
   {% endfor %}
 
-  <div class="detail-grid">
+  <div class="detail-grid{% if not screenshot_images %} detail-grid--full{% endif %}">
 
     {# ── LEFT: INFO ── #}
     <div class="detail-info">
@@ -85,7 +85,7 @@
 
           {% if project.url %}
           <div class="detail-field">
-            <span class="about-key">url</span>
+            <span class="about-key">link</span>
             <a href="{{ project.url }}" class="about-link" target="_blank" rel="noopener noreferrer">
               {{ project.display_url }} ↗
             </a>
@@ -123,22 +123,35 @@
       </div>
     </div>
 
-    {# ── RIGHT: SCREENSHOTS (exclude hero and thumbnail — already shown above) ── #}
+    {# ── RIGHT: SCREENSHOTS (screenshot / mobile types only) ── #}
+    {% if screenshot_images %}
     <div class="detail-screenshots">
-      {% for img in project.images.all %}
-        {% if img.image_type == 'screenshot' or img.image_type == 'mobile' %}
-          <figure class="screenshot">
-            <img src="{{ img.url }}" alt="{{ img.caption|default:project.name }}" loading="lazy" />
-            {% if img.caption %}
-              <figcaption class="t-muted">{{ img.caption }}</figcaption>
-            {% endif %}
-          </figure>
-        {% endif %}
+      {% for img in screenshot_images %}
+        <figure class="screenshot">
+          <img src="{{ img.url }}" alt="{{ img.caption|default:project.name }}" loading="lazy" />
+          {% if img.caption %}
+            <figcaption class="t-muted">{{ img.caption }}</figcaption>
+          {% endif %}
+        </figure>
       {% endfor %}
     </div>
+    {% endif %}
 
   </div>
 
+  {# ── GALLERY ── #}
+  {% if gallery_images %}
+  <div class="detail-gallery">
+    {% for img in gallery_images %}
+      <figure class="gallery-item">
+        <img src="{{ img.url }}" alt="{{ img.caption|default:project.name }}" loading="lazy" />
+        {% if img.caption %}
+          <figcaption class="gallery-caption">{{ img.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  </div>
+  {% endif %}
 
 </div>
 {% endblock %}

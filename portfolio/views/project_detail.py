@@ -24,4 +24,7 @@ class ProjectDetailView(DetailView):
         context["prev_project"] = projects[idx - 1] if idx > 0 else None
         context["next_project"] = projects[idx + 1] if idx < len(projects) - 1 else None
         context["last_project"] = projects[-1] if idx < len(projects) - 1 else None
+        images = list(self.object.images.all())
+        context["screenshot_images"] = [img for img in images if img.image_type in ("screenshot", "mobile")]
+        context["gallery_images"] = [img for img in images if img.image_type == "gallery"]
         return context
