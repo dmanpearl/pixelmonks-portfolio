@@ -22,13 +22,11 @@
         <span class="logo-prefix">~/</span><span class="logo-name">pixelmonks</span>
       </a>
     </div>
-    <ul class="nav-links">
-      <li><a href="{% url 'portfolio:project_list' %}" class="nav-glass-pill {% if request.resolver_match.url_name == 'project_list' %}nav-glass-pill--active{% endif %}">work</a></li>
-      <li><a href="{% url 'portfolio:about' %}" class="nav-glass-pill {% if request.resolver_match.url_name == 'about' %}nav-glass-pill--active{% endif %}">about</a></li>
-      {% if site_settings.contact_enable %}
-      <li><a href="{% url 'portfolio:contact' %}" class="nav-pill {% if request.resolver_match.url_name == 'contact' %}nav-pill--active{% endif %}">contact</a></li>
-      {% endif %}
-    </ul>
+    <nav class="nav-seg" aria-label="Site navigation">
+      <a href="{% url 'portfolio:project_list' %}" class="nav-seg-item {% if request.resolver_match.url_name == 'project_list' or request.resolver_match.url_name == 'project_detail' %}nav-seg-item--active{% endif %}">work</a>
+      <a href="{% url 'portfolio:about' %}" class="nav-seg-item {% if request.resolver_match.url_name == 'about' %}nav-seg-item--active{% endif %}">about</a>
+      {% if site_settings.contact_enable %}<a href="{% url 'portfolio:contact' %}" class="nav-seg-item {% if request.resolver_match.url_name == 'contact' %}nav-seg-item--active{% endif %}">contact</a>{% endif %}
+    </nav>
   </nav>
 
   <main>
