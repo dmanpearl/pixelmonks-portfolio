@@ -7,6 +7,7 @@ class Project(models.Model):
     name = models.CharField(max_length=120)
     short_name = models.CharField(max_length=40, blank=True)
     url = models.URLField(blank=True)
+    url_label = models.CharField(max_length=80, blank=True)
     github_url = models.URLField(blank=True)
     description = models.TextField()
     involvement_percent = models.PositiveSmallIntegerField(default=100)

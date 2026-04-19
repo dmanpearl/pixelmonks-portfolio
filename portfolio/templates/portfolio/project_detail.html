@@ -87,7 +87,7 @@
           <div class="detail-field">
             <span class="about-key">link</span>
             <a href="{{ project.url }}" class="about-link" target="_blank" rel="noopener noreferrer">
-              {{ project.display_url }} ↗
+              {{ project.url_label|default:project.display_url }} ↗
             </a>
           </div>
           {% endif %}

@@ -37,7 +37,7 @@
               <a href="{{ project.url }}"
                  class="btn-visit"
                  target="_blank"
-                 rel="noopener noreferrer">{{ project.display_url }} ↗</a>
+                 rel="noopener noreferrer">{{ project.url_label|default:project.display_url }} ↗</a>
             {% endif %}
           </div>
         </div>

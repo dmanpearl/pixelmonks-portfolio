@@ -237,6 +237,7 @@ PROJECTS = [
         "name": "Gnarbox",
         "short_name": "Gnarbox",
         "url": "https://photographylife.com/reviews/gnarbox-2-0-ssd",
+        "url_label": "Photographylife",
         "github_url": "",
         "description": (
             "At Gnarbox, I was part of the original engineering team building a rugged, "

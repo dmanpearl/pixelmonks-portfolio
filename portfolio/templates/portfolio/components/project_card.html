@@ -26,7 +26,7 @@
     <div class="card-footer">
       {% if project.url %}
         <a href="{{ project.url }}" class="card-url" target="_blank" rel="noopener noreferrer">
-          {{ project.display_url }} ↗
+          {{ project.url_label|default:project.display_url }} ↗
         </a>
       {% endif %}
       <span class="involvement">{{ project.involvement_percent }}% solo</span>
