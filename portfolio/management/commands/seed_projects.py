@@ -13,6 +13,7 @@ PROJECTS = [
     {
         "slug": "rating-ranch",
         "name": "RatingRanch.com",
+        "short_name": "Ratings",
         "url": "https://ratingranch.com",
         "github_url": "",
         "description": (
@@ -105,6 +106,7 @@ PROJECTS = [
     {
         "slug": "breaking-news-guys",
         "name": "BreakingNewsGuys.com",
+        "short_name": "News",
         "url": "https://breakingnewsguys.com",
         "github_url": "",
         "description": (
@@ -173,6 +175,7 @@ PROJECTS = [
     {
         "slug": "la-surfing-school",
         "name": "LAsurfing.school",
+        "short_name": "Surfing",
         "url": "https://lasurfing.school",
         "github_url": "",
         "description": (
@@ -232,6 +235,7 @@ PROJECTS = [
     {
         "slug": "gnarbox",
         "name": "Gnarbox",
+        "short_name": "Gnarbox",
         "url": "https://photographylife.com/reviews/gnarbox-2-0-ssd",
         "github_url": "",
         "description": (
@@ -309,6 +313,7 @@ PROJECTS = [
     {
         "slug": "leroys",
         "name": "Leroys Sports Betting App",
+        "short_name": "Leroys",
         "url": "",
         "github_url": "",
         "description": (

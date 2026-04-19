@@ -517,14 +517,12 @@ img {
 /* ── THUMB STRIP ── */
 .thumb-strip {
   display: flex;
+  justify-content: center;
   gap: 0.75rem;
-  padding: 0.75rem 2.5rem 0;
-  max-width: 640px;
-  margin: 0 auto;
+  padding: 0.75rem 0 0;
 }
 
 .thumb {
-  flex: 1;
   padding: 0.55rem 0.75rem;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -536,11 +534,11 @@ img {
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
   letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 
 .thumb::before {
-  content: "▸ ";
-  color: var(--muted2);
+  content: none;
 }
 
 .thumb--active {
@@ -549,9 +547,6 @@ img {
   background: rgba(124, 58, 237, 0.08);
 }
 
-.thumb--active::before {
-  color: var(--violet);
-}
 
 .thumb:hover:not(.thumb--active) {
   border-color: var(--border2);

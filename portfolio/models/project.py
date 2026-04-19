@@ -5,6 +5,7 @@ from django.utils.text import slugify
 class Project(models.Model):
     slug = models.SlugField(unique=True, max_length=80)
     name = models.CharField(max_length=120)
+    short_name = models.CharField(max_length=40, blank=True)
     url = models.URLField(blank=True)
     github_url = models.URLField(blank=True)
     description = models.TextField()
