@@ -386,9 +386,11 @@ img {
 }
 
 .carousel-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--amber);
   margin-bottom: 0.3rem;
 }
 
@@ -438,7 +440,11 @@ img {
 }
 
 .carousel-label-text {
-  color: var(--amber);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -755,7 +761,24 @@ img {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 0.45rem;
+  padding: 0.7rem 1.2rem 0.5rem;
+}
+
+.grid--list .card-title {
+  display: none;
+}
+
+.list-project-name {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  padding: 0 0 0.5rem 0;
+}
+
+.list-project-item + .list-project-item {
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
 }
 
 

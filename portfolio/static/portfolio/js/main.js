@@ -45,7 +45,7 @@ function makeCarousel({ outerId, trackId, slideClass, prevId, nextId, pauseId, l
     if (!labelLink) return;
     const slide = slides[current];
     if (slide.dataset.detailUrl) labelLink.href = slide.dataset.detailUrl;
-    if (slide.dataset.slug) labelLink.textContent = `open ./projects/${slide.dataset.slug}`;
+    if (slide.dataset.name) labelLink.textContent = slide.dataset.name;
   }
 
   function goTo(logicalIndex, direct = false) {

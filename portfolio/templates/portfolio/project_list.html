@@ -31,9 +31,9 @@
           {% if featured_projects %}
             <a href="{% url 'portfolio:project_detail' featured_projects.0.slug %}"
                id="carousel-label-link"
-               class="carousel-label-text">open ./projects/{{ featured_projects.0.slug }}</a>
+               class="carousel-label-text">{{ featured_projects.0.name }}</a>
           {% else %}
-            <span id="carousel-label-link" class="carousel-label-text">open ./projects/</span>
+            <span id="carousel-label-link" class="carousel-label-text">Projects</span>
           {% endif %}
         {% else %}
           ls ./projects/ --{{ layout }}
@@ -64,7 +64,14 @@
   {# ── GRID — always rendered; hidden on desktop when carousel is active ── #}
   <div class="grid {% if layout == 'carousel' %}grid--grid grid--carousel-hidden{% else %}grid--{{ layout }}{% endif %}">
     {% for project in projects %}
-      {% include "portfolio/components/project_card.html" %}
+      {% if layout == "list" %}
+        <div class="list-project-item">
+          <h3 class="list-project-name">{{ project.name }}</h3>
+          {% include "portfolio/components/project_card.html" %}
+        </div>
+      {% else %}
+        {% include "portfolio/components/project_card.html" %}
+      {% endif %}
     {% empty %}
       <p class="t-output">No projects yet.</p>
     {% endfor %}
