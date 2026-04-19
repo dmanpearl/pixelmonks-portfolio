@@ -647,7 +647,7 @@ img {
   .grid--list {
     grid-template-columns: repeat(2, 1fr);
   }
-  .grid--list .card {
+  .grid--list .card-inner {
     display: block;
   }
   .grid--list .card-img,
@@ -678,16 +678,21 @@ img {
 /* ── CARD ── */
 .card {
   position: relative;
+  cursor: pointer;
+  padding-bottom: 4px;
+}
+
+.card-inner {
+  width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 11px;
   overflow: hidden;
   backdrop-filter: blur(10px);
-  cursor: pointer;
   transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
 }
 
-.card:hover {
+.card:hover .card-inner {
   transform: translateY(-4px);
   border-color: rgba(124, 58, 237, 0.35);
   box-shadow: 0 0 28px rgba(124, 58, 237, 0.15), 0 12px 36px rgba(0, 0, 0, 0.4);
@@ -825,10 +830,9 @@ img {
 }
 
 /* List layout adjustments */
-.grid--list .card {
+.grid--list .card-inner {
   display: grid;
   grid-template-columns: 200px 1fr auto;
-  border-radius: 10px;
 }
 
 .grid--list .card-img,
