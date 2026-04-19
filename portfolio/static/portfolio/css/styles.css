@@ -683,6 +683,7 @@ img {
 }
 
 .card-inner {
+  position: relative;
   width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
