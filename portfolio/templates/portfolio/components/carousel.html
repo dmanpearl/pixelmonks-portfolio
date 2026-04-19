@@ -72,14 +72,16 @@
 
   {# ── THUMB STRIP ── #}
   <div class="thumb-strip" role="tablist" aria-label="Select project">
-    {% for project in projects %}
-      <button class="thumb {% if forloop.first %}thumb--active{% endif %}"
-              role="tab"
-              data-target="{{ forloop.counter0 }}"
-              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
-        {{ project.short_name|default:project.slug }}
-      </button>
-    {% endfor %}
+    <div class="thumb-strip-inner">
+      {% for project in projects %}
+        <button class="thumb {% if forloop.first %}thumb--active{% endif %}"
+                role="tab"
+                data-target="{{ forloop.counter0 }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+          {{ project.short_name|default:project.slug }}
+        </button>
+      {% endfor %}
+    </div>
   </div>
 
 </section>

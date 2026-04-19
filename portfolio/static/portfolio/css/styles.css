@@ -518,39 +518,46 @@ img {
 .thumb-strip {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
   padding: 0.75rem 0 0;
 }
 
-.thumb {
-  padding: 0.55rem 0.75rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--muted);
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
+.thumb-strip-inner {
+  display: flex;
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  overflow: hidden;
+  background: var(--surface2);
 }
 
-.thumb::before {
-  content: none;
+.thumb {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.9rem;
+  color: var(--muted);
+  border-right: 1px solid var(--border2);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  background: none;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+.thumb:last-child {
+  border-right: none;
+}
+
+.thumb:hover:not(.thumb--active) {
+  color: var(--text);
 }
 
 .thumb--active {
-  border-color: rgba(124, 58, 237, 0.4);
-  color: var(--text2);
-  background: rgba(124, 58, 237, 0.08);
-}
-
-
-.thumb:hover:not(.thumb--active) {
-  border-color: var(--border2);
-  color: var(--text2);
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  color: #fff !important;
+  font-weight: 500;
 }
 
 /* ── GALLERY HEADER (grid / list modes) ── */
