@@ -8,11 +8,11 @@
 - [x] Add additional projects: William Hill
 - [x] Add additional projects: Leroys and Gnarbox
 - [x] Support multiple images per project
+- [x] Gallery images for Rating Ranch
+- [x] Gallery images for Breaking News
+- [x] Gallery images for LA Surfing School
 
 ## Open Items
 
-- [ ] Gallery images for Rating Ranch
-- [ ] Gallery images for Breaking News
-- [ ] Gallery images for LA Surfing School
 - [ ] DevOps: CI pipeline validates unit tests before allowing merge
 - [ ] Add additional projects: HotRoster
