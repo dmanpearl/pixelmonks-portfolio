@@ -8,7 +8,6 @@ from django.core.management.base import BaseCommand
 
 from portfolio.models import Project, TechStackItem, ProjectImage
 
-
 PROJECTS = [
     {
         "slug": "rating-ranch",
@@ -312,6 +311,85 @@ PROJECTS = [
         ],
     },
     {
+        "slug": "leaderlodge",
+        "name": "LeaderLodge",
+        "short_name": "LeaderLodge",
+        "url": "https://leaderlodge.com",
+        "github_url": "",
+        "description": (
+            "Mobile-friendly web app for tracking scores, rankings, and leaderboards "
+            "for social games. Supports Dominos, Backgammon, Progressive Rummy, and "
+            "Mah Jongg with group management, player stats, matchup comparisons, a "
+            "Hall of Fame, and a public demo mode for anonymous visitors."
+        ),
+        "involvement_percent": 100,
+        "is_featured": True,
+        "order": 5,
+        "tech_stack": [
+            "Python",
+            "Django",
+            "PostgreSQL",
+            "Railway",
+            "Brevo",
+        ],
+        "images": [
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/screenshot.png",
+                "image_type": "hero",
+                "caption": "Leaderboard and recent games on the home dashboard",
+                "order": 0,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/logo.png",
+                "image_type": "thumbnail",
+                "caption": "",
+                "order": 1,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery_leaderboard.png",
+                "image_type": "gallery",
+                "caption": "Leaderboard ranks players by weighted placement points across all recorded games",
+                "order": 2,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-games.png",
+                "image_type": "gallery",
+                "caption": "Game history list with filterable columns for player, location, and date",
+                "order": 3,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-game.png",
+                "image_type": "gallery",
+                "caption": "Game detail view showing scores, placements, and per-player stats",
+                "order": 4,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-add.png",
+                "image_type": "gallery",
+                "caption": "Record a new game with fuzzy player search and instant score preview",
+                "order": 5,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-stats.png",
+                "image_type": "gallery",
+                "caption": "Head-to-head stats panel with win rates and score breakdowns",
+                "order": 6,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-rummy.png",
+                "image_type": "gallery",
+                "caption": "Progressive Rummy scoring with round-by-round cumulative totals",
+                "order": 7,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-halloffame.png",
+                "image_type": "gallery",
+                "caption": "Hall of Fame highlights all-time best performances across game types",
+                "order": 8,
+            },
+        ],
+    },
+    {
         "slug": "leroys",
         "name": "Leroys Sports Betting App",
         "short_name": "Leroys",
@@ -331,7 +409,7 @@ PROJECTS = [
         ),
         "involvement_percent": 100,
         "is_featured": True,
-        "order": 5,
+        "order": 6,
         "tech_stack": [
             "Objective-C",
             "Android Java",
