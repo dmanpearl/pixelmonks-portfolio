@@ -313,14 +313,18 @@ PROJECTS = [
     {
         "slug": "leaderlodge",
         "name": "LeaderLodge",
-        "short_name": "LeaderLodge",
+        "short_name": "AI Insights",
         "url": "https://leaderlodge.com",
         "github_url": "",
         "description": (
-            "Mobile-friendly web app for tracking scores, rankings, and leaderboards "
-            "for social games. Supports Dominos, Backgammon, Progressive Rummy, and "
-            "Mah Jongg with group management, player stats, matchup comparisons, a "
-            "Hall of Fame, and a public demo mode for anonymous visitors."
+            "Computed by LeaderLodge. Explained by AI. Web app for "
+            "groups who play games together: record scores, track rankings and "
+            "leaderboards, and ask questions about your stats in plain language. "
+            "Rankings and standings are computed by LeaderLodgge; cloud LLMs narrate "
+            "AI results through contextual Insights via "
+            "natural-language query. Supports Dominos, BackGammon, Mah Jongg, Progressive "
+            "Rummy, and more, with group rosters, matchups, Hall of Fame history, "
+            "and a public demo mode."
         ),
         "involvement_percent": 100,
         "is_featured": True,
@@ -329,6 +333,8 @@ PROJECTS = [
             "Python",
             "Django",
             "PostgreSQL",
+            "OpenAI",
+            "Google Gemini",
             "Railway",
             "Brevo",
         ],
@@ -336,7 +342,9 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/leaderlodge/screenshot.png",
                 "image_type": "hero",
-                "caption": "Leaderboard and recent games on the home dashboard",
+                "caption": (
+                    "Home dashboard with leaderboards, recent games, and AI game insights"
+                ),
                 "order": 0,
             },
             {
@@ -346,9 +354,12 @@ PROJECTS = [
                 "order": 1,
             },
             {
-                "static_path": "portfolio/images/projects/leaderlodge/gallery_leaderboard.png",
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-leaderboard.png",
                 "image_type": "gallery",
-                "caption": "Leaderboard ranks players by weighted placement points across all recorded games",
+                "caption": (
+                    "Leaderboard ranks players by weighted finish points, with an "
+                    "Insights panel for AI summaries of standings and trends"
+                ),
                 "order": 2,
             },
             {
@@ -360,7 +371,10 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/leaderlodge/gallery-game.png",
                 "image_type": "gallery",
-                "caption": "Game detail view showing scores, placements, and per-player stats",
+                "caption": (
+                    "Game detail with scores, placements, and contextual AI insights "
+                    "from computed stats"
+                ),
                 "order": 4,
             },
             {
@@ -372,7 +386,10 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/leaderlodge/gallery-stats.png",
                 "image_type": "gallery",
-                "caption": "Head-to-head stats panel with win rates and score breakdowns",
+                "caption": (
+                    "Head-to-head matchup stats with AI-generated narrative from "
+                    "LeaderLodge-computed rankings"
+                ),
                 "order": 6,
             },
             {
@@ -384,8 +401,47 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/leaderlodge/gallery-halloffame.png",
                 "image_type": "gallery",
-                "caption": "Hall of Fame highlights all-time best performances across game types",
+                "caption": (
+                    "Hall of Fame highlights period leaders with AI trend analysis "
+                    "from computed history"
+                ),
                 "order": 8,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-dashboard.png",
+                "image_type": "gallery",
+                "caption": "Dashboard overview with leaderboard cards for each active game type",
+                "order": 9,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-groups.png",
+                "image_type": "gallery",
+                "caption": "Groups view for managing players, roles, and game history per group",
+                "order": 10,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-about.png",
+                "image_type": "gallery",
+                "caption": "About page describing the app's purpose and supported game types",
+                "order": 11,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-about-ai-insights.png",
+                "image_type": "gallery",
+                "caption": "About page highlighting the AI-powered insights and analysis features",
+                "order": 12,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-ai1.png",
+                "image_type": "gallery",
+                "caption": "AI-generated game commentary and statistical trend analysis",
+                "order": 13,
+            },
+            {
+                "static_path": "portfolio/images/projects/leaderlodge/gallery-ai-hall-of-fame.png",
+                "image_type": "gallery",
+                "caption": "AI-written Hall of Fame narrative celebrating top performers",
+                "order": 14,
             },
         ],
     },
