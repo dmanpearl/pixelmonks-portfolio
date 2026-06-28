@@ -23,7 +23,7 @@ PROJECTS = [
         ),
         "involvement_percent": 100,
         "is_featured": True,
-        "order": 1,
+        "order": 2,
         "tech_stack": [
             "Python",
             "Django",
@@ -117,7 +117,7 @@ PROJECTS = [
         ),
         "involvement_percent": 100,
         "is_featured": True,
-        "order": 2,
+        "order": 3,
         "tech_stack": [
             "Python",
             "Django",
@@ -184,7 +184,7 @@ PROJECTS = [
         ),
         "involvement_percent": 100,
         "is_featured": True,
-        "order": 3,
+        "order": 4,
         "tech_stack": [
             "Python",
             "Django",
@@ -252,7 +252,7 @@ PROJECTS = [
         ),
         "involvement_percent": 8,
         "is_featured": True,
-        "order": 4,
+        "order": 5,
         "tech_stack": [
             "Go",
             "React Native",
@@ -324,7 +324,7 @@ PROJECTS = [
         ),
         "involvement_percent": 100,
         "is_featured": True,
-        "order": 5,
+        "order": 1,
         "tech_stack": [
             "Python",
             "Django",

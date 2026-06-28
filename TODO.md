@@ -11,8 +11,10 @@
 - [x] Gallery images for Rating Ranch
 - [x] Gallery images for Breaking News
 - [x] Gallery images for LA Surfing School
+- [x] Display order: Display LeaderLodge first
 
 ## Open Items
 
+- [ ] LeaderLodge: Re-brand as AI centric
 - [ ] DevOps: CI pipeline validates unit tests before allowing merge
 - [ ] Add additional projects: HotRoster
