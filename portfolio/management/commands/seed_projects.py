@@ -465,7 +465,7 @@ PROJECTS = [
         ),
         "involvement_percent": 100,
         "is_featured": True,
-        "order": 6,
+        "order": 7,
         "tech_stack": [
             "Objective-C",
             "Android Java",
@@ -484,6 +484,47 @@ PROJECTS = [
                 "image_type": "thumbnail",
                 "caption": "",
                 "order": 1,
+            },
+        ],
+    },
+    {
+        "slug": "manpearl-website",
+        "name": "Personal Website",
+        "short_name": "Manpearl",
+        "url": "https://manpearl.com",
+        "github_url": "https://github.com/dmanpearl/manpearl-website",
+        "description": (
+            "Minimal personal website serving as a professional hub with links "
+            "to portfolio, LinkedIn, and GitHub."
+        ),
+        "involvement_percent": 100,
+        "is_featured": True,
+        "order": 6,
+        "tech_stack": [
+            "Python",
+            "HTML",
+            "CSS",
+        ],
+        "images": [
+            {
+                "static_path": "portfolio/images/projects/manpearl-website/screenshot.png",
+                "image_type": "hero",
+                "caption": "Personal website with links to portfolio, LinkedIn, and GitHub",
+                "order": 0,
+            },
+            {
+                "static_path": "portfolio/images/projects/manpearl-website/logo.png",
+                "image_type": "thumbnail",
+                "caption": "",
+                "order": 1,
+            },
+            {
+                "static_path": "portfolio/images/projects/manpearl-website/gallery-landing.png",
+                "image_type": "gallery",
+                "caption": (
+                    "Provides access to Pixelmonks portfolio, LinkedIn, and GitHub"
+                ),
+                "order": 2,
             },
         ],
     },
