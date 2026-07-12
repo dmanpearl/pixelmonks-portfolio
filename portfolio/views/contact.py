@@ -2,13 +2,14 @@ import logging
 
 from django.conf import settings
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 
 import resend
 
 from portfolio.forms import ContactForm
+from portfolio.honeypot import check_honeypot
 from portfolio.models import SiteSettings
 
 logger = logging.getLogger(__name__)
@@ -23,6 +24,17 @@ class ContactView(FormView):
         if not SiteSettings.get().contact_enable:
             raise Http404
         return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        triggered, reason = check_honeypot(request.POST)
+        if triggered:
+            logger.warning(
+                "contact honeypot triggered: %s ip=%s",
+                reason,
+                request.META.get("REMOTE_ADDR", ""),
+            )
+            return HttpResponseRedirect(self.get_success_url())
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         name = form.cleaned_data["name"]

@@ -1,3 +1,5 @@
+import time
+
 from django import forms
 
 
@@ -28,3 +30,12 @@ class ContactForm(forms.Form):
         min_length=10,
         widget=forms.Textarea(attrs={"placeholder": "What's on your mind?", "rows": 5}),
     )
+    form_rendered_at = forms.CharField(
+        required=False,
+        widget=forms.HiddenInput(),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not self.is_bound:
+            self.fields["form_rendered_at"].initial = str(int(time.time()))

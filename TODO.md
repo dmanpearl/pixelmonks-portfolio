@@ -12,10 +12,10 @@
 - [x] Gallery images for Breaking News
 - [x] Gallery images for LA Surfing School
 - [x] Display order: Display LeaderLodge first
+- [x] Add honeypot to thwart spam contact form submissions
 
 ## Open Items
 
-- [ ] Add honeypot to thwart spam contact form submissions
 - [ ] LeaderLodge: Re-brand as AI centric
 - [ ] DevOps: CI pipeline validates unit tests before allowing merge
-- [x] Add additional projects: HotRoster
+- [ ] Add additional projects: HotRoster
