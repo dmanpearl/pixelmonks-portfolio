@@ -18,8 +18,8 @@ PROJECTS = [
         "description": (
             "Sports ratings platform featuring data import via Excel spreadsheets, "
             "Pandas-powered analytics, and public leaderboards. Built for the Alliance "
-            "Sports organisation to manage and publish competitive ratings across multiple "
-            "Basketball, Hockey, and Baseball divisions."
+            "Sports organization to manage and publish competitive ratings across multiple "
+            "basketball, hockey, and baseball divisions."
         ),
         "involvement_percent": 100,
         "is_featured": True,
@@ -31,13 +31,12 @@ PROJECTS = [
             "Pandas",
             "OpenPyXL",
             "FastAPI",
-            "httpx",
         ],
         "images": [
             {
                 "static_path": "portfolio/images/projects/rating-ranch/screenshot.png",
                 "image_type": "hero",
-                "caption": "The team schedule displays game stats and visually indicates outcome",
+                "caption": "The team schedule displays game stats and color-codes win/loss outcomes",
                 "order": 0,
             },
             {
@@ -109,11 +108,11 @@ PROJECTS = [
         "url": "https://breakingnewsguys.com",
         "github_url": "",
         "description": (
-            "Breaking News broadcasting platform for a stock based news team. "
-            "Editors compose messages and dispatch them simulataneously to multiple clients "
-            "including Asynchronous Server Gateway Interface (ASGI) API streaming endpoints, "
-            "Discord webhooks, and Slack messages. Supports binary attachments, media uploads, "
-            "API documentation via FastAPI and Swagger, and example clients"
+            "Breaking News broadcasting platform for a stock-based news team. "
+            "Editors compose messages and dispatch them simultaneously to multiple clients "
+            "including ASGI streaming endpoints, Discord webhooks, and Slack messages. "
+            "Supports binary attachments, media uploads, API documentation via FastAPI "
+            "and Swagger, and example clients."
         ),
         "involvement_percent": 100,
         "is_featured": True,
@@ -130,7 +129,7 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/breaking-news/screenshot.png",
                 "image_type": "hero",
-                "caption": "New multi-media messages are immediately broadcast in real-time",
+                "caption": "Multimedia messages are composed and broadcast in real time to all configured destinations",
                 "order": 0,
             },
             {
@@ -166,7 +165,7 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/breaking-news/gallery-api-usage.png",
                 "image_type": "gallery",
-                "caption": "API usage records with client history",
+                "caption": "API usage log with per-client message history and delivery tracking",
                 "order": 6,
             },
         ],
@@ -180,7 +179,7 @@ PROJECTS = [
         "description": (
             "Marketing and lesson-booking website for a Los Angeles surf instructor. "
             "Integrates Stripe for payment processing and Resend for transactional "
-            "booking confirmation emails, and a state-of-the-art 5-star rating system."
+            "booking confirmation emails, with a student review and 5-star rating system."
         ),
         "involvement_percent": 100,
         "is_featured": True,
@@ -196,7 +195,7 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/la-surfing-school/screenshot.png",
                 "image_type": "hero",
-                "caption": "Website provides bookings, payments, ratings, reviews, lesson options, and messaging",
+                "caption": "Full-featured surf school site with lesson booking, Stripe payments, and student ratings",
                 "order": 0,
             },
             {
@@ -263,7 +262,7 @@ PROJECTS = [
             "Android Java",
             "gRPC/Protobuf",
             "GStreamer",
-            "Node/Typescript",
+            "Node.js/TypeScript",
         ],
         "images": [
             {
@@ -293,19 +292,19 @@ PROJECTS = [
             {
                 "static_path": "portfolio/images/projects/gnarbox/gnarbox_video_edit.jpeg",
                 "image_type": "gallery",
-                "caption": "Audio sync",
+                "caption": "Audio sync tools for aligning video with external audio sources",
                 "order": 4,
             },
             {
                 "static_path": "portfolio/images/projects/gnarbox/gnarbox_settings.jpg",
                 "image_type": "gallery",
-                "caption": "Smart, fast, safe, secure, multi-destination, verified backup and copy options",
+                "caption": "Multi-destination backup with verification, smart copy options, and configurable safety rules",
                 "order": 5,
             },
             {
                 "static_path": "portfolio/images/projects/gnarbox/gnarbox_image_gallery.jpg",
                 "image_type": "gallery",
-                "caption": "Native media browsing and fast scrolling supports 10's of thousands of thumbnails smoothly",
+                "caption": "Native media browser handles tens of thousands of thumbnails with smooth scrolling",
                 "order": 6,
             },
         ],
@@ -320,9 +319,8 @@ PROJECTS = [
             "Computed by LeaderLodge. Explained by AI. Web app for "
             "groups who play games together: record scores, track rankings and "
             "leaderboards, and ask questions about your stats in plain language. "
-            "Rankings and standings are computed by LeaderLodgge; cloud LLMs narrate "
-            "AI results through contextual Insights via "
-            "natural-language query. Supports Dominos, BackGammon, Mah Jongg, Progressive "
+            "LLMs narrate results through contextual natural-language Insights. "
+            "Supports Dominoes, Backgammon, Mah Jongg, Progressive "
             "Rummy, and more, with group rosters, matchups, Hall of Fame history, "
             "and a public demo mode."
         ),
@@ -452,16 +450,15 @@ PROJECTS = [
         "url": "",
         "github_url": "",
         "description": (
-            "As one for the history books from an era when location services were not "
+            "One for the history books: in an era when location services were not "
             "available for browsers and smartphone location could easily be spoofed, "
             "Leroy's Sports Betting App was a groundbreaking mobile platform in 2010 and "
             "the first app of any kind approved by the Nevada Gaming Control Board for "
             "legal sports wagering. It was initially launched on BlackBerry and later "
-            "expanding to Android and iOS. As the sole developer, I built the app "
+            "expanded to Android and iOS. As the sole developer, I built the app "
             "for Leroy's, a subsidiary of American Wagering, helping pioneer U.S. "
-            "mobile betting and contributing to William Hill's acquisition, where "
-            "I implemented the rebranding to William Hill's mobile sportsbook "
-            "across all smartphone platforms."
+            "mobile betting, attract William Hill's acquisition, and implement the "
+            "rebranding to William Hill's mobile sportsbook across smartphone platforms."
         ),
         "involvement_percent": 100,
         "is_featured": True,
@@ -501,7 +498,6 @@ PROJECTS = [
         "is_featured": True,
         "order": 6,
         "tech_stack": [
-            "Python",
             "HTML",
             "CSS",
         ],
