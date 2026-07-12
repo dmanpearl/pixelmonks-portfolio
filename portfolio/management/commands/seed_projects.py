@@ -318,8 +318,10 @@ PROJECTS = [
         "description": (
             "Computed by LeaderLodge. Explained by AI. Web app for "
             "groups who play games together: record scores, track rankings and "
-            "leaderboards, and ask questions about your stats in plain language. "
-            "LLMs narrate results through contextual natural-language Insights. "
+            "leaderboards, and interrogate your stats with natural-language questions. "
+            "Two AI modes power the experience: contextual Insights that narrate "
+            "standings and trends, and an agentic Ask feature that uses tool-calling "
+            "across live stats to answer freeform questions. "
             "Supports Dominoes, Backgammon, Mah Jongg, Progressive "
             "Rummy, and more, with group rosters, matchups, Hall of Fame history, "
             "and a public demo mode."
