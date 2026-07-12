@@ -8,12 +8,9 @@
 
   <div class="terminal-window contact-terminal">
     <div class="terminal-bar">
-      <span class="terminal-title">dmanpearl — send-message</span>
+      <span class="terminal-title">Send Message</span>
     </div>
     <div class="terminal-body">
-      <div class="t-line">
-        <span class="t-cmd">compose --to dmanpearl@pixelmonks.com</span>
-      </div>
 
       <form method="post" class="contact-form" novalidate>
         {% csrf_token %}
@@ -36,7 +33,7 @@
           {% for e in form.email.errors %}<span class="form-error">{{ e }}</span>{% endfor %}
         </div>
 
-        {# phone + method — method dropdown scoped to this field only #}
+        {# phone + method #}
         <div class="form-field {% if form.phone.errors %}form-field--error{% endif %}">
           <label class="form-label" for="{{ form.phone.id_for_label }}">
             <span class="about-key">phone</span>

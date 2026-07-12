@@ -45,7 +45,6 @@
     </div>
   </div>
 
-  {# ── HERO IMAGE — show only the hero type, uncropped ── #}
   {% for img in project.images.all %}
     {% if img.image_type == 'hero' %}
       <div class="detail-hero">
@@ -56,32 +55,21 @@
 
   <div class="detail-grid{% if not screenshot_images %} detail-grid--full{% endif %}">
 
-    {# ── LEFT: INFO ── #}
     <div class="detail-info">
       <div class="terminal-window">
-        <div class="terminal-bar">
-          <span class="terminal-title">{{ project.slug }}/README</span>
-        </div>
         <div class="terminal-body terminal-body--detail">
-          <div class="t-line">
-            <span class="t-cmd">cat project.json</span>
-          </div>
 
-          {# Logo beside name if available #}
-          {% for img in project.images.all %}{% if img.image_type == 'thumbnail' %}
-          <div class="detail-field detail-field--name">
-            <img src="{{ img.url }}" alt="{{ project.name }} logo" class="detail-logo" />
-            <div>
-              <div class="about-key">name</div>
-              <div class="about-val" style="font-size:1rem;font-weight:700">{{ project.name }}</div>
+          {% for img in project.images.all %}
+            {% if img.image_type == 'thumbnail' %}
+            <div class="detail-field detail-field--name">
+              <img src="{{ img.url }}" alt="{{ project.name }} logo" class="detail-logo" />
+              <div>
+                <div class="about-key">name</div>
+                <div class="about-val" style="font-size:1rem;font-weight:700">{{ project.name }}</div>
+              </div>
             </div>
-          </div>
-          {% endif %}{% endfor %}
-
-          {# Fallback: no thumbnail #}
-          {% with has_thumb=project.images.all|length %}
-          {% for img in project.images.all %}{% if img.image_type == 'thumbnail' %}{% with found=True %}{% endwith %}{% endif %}{% endfor %}
-          {% endwith %}
+            {% endif %}
+          {% endfor %}
 
           {% if project.url %}
           <div class="detail-field">
@@ -115,15 +103,11 @@
             </ul>
           </div>
 
-          <div class="t-line" style="margin-top:1.25rem">
-            <span class="t-cmd">cat description.txt</span>
-          </div>
           <p class="detail-desc">{{ project.description }}</p>
         </div>
       </div>
     </div>
 
-    {# ── RIGHT: SCREENSHOTS (screenshot / mobile types only) ── #}
     {% if screenshot_images %}
     <div class="detail-screenshots">
       {% for img in screenshot_images %}
@@ -139,7 +123,6 @@
 
   </div>
 
-  {# ── GALLERY ── #}
   {% if gallery_images %}
   <div class="detail-gallery">
     {% for img in gallery_images %}

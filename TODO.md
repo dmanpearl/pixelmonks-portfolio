@@ -15,6 +15,7 @@
 
 ## Open Items
 
+- [ ] Add honeypot to thwart spam contact form submissions
 - [ ] LeaderLodge: Re-brand as AI centric
 - [ ] DevOps: CI pipeline validates unit tests before allowing merge
-- [ ] Add additional projects: HotRoster
+- [x] Add additional projects: HotRoster

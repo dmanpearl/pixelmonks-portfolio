@@ -1,54 +1,69 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}Pixelmonks — David Manpearl{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}Full-stack developer specializing in backend architecture and user experience. Websites, APIs, mobile and desktop apps.{% endblock %}" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}" />
-  <link rel="canonical" href="https://pixelmonks.com{{ request.path }}" />
-  {% block extra_head %}{% endblock %}
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Pixelmonks — David Manpearl{% endblock %}</title>
+    <meta
+      name="description"
+      content="{% block meta_description %}Full-stack developer specializing in backend architecture and user experience. Websites, APIs, mobile and desktop apps.{% endblock %}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}" />
+    <link rel="canonical" href="https://pixelmonks.com{{ request.path }}" />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    {% include "icons_sprite.html" %}
 
-  {% include "icons_sprite.html" %}
-
-  <nav class="site-nav">
-    <div class="nav-left">
-      <a href="{% url 'portfolio:project_list' %}" class="logo">
-        <span class="logo-prefix">~/</span><span class="logo-name">pixelmonks</span>
-      </a>
-    </div>
-    <nav class="nav-seg" aria-label="Site navigation">
-      <a href="{% url 'portfolio:project_list' %}" class="nav-seg-item {% if request.resolver_match.url_name == 'project_list' or request.resolver_match.url_name == 'project_detail' %}nav-seg-item--active{% endif %}">work</a>
-      <a href="{% url 'portfolio:about' %}" class="nav-seg-item {% if request.resolver_match.url_name == 'about' %}nav-seg-item--active{% endif %}">about</a>
-      {% if site_settings.contact_enable %}<a href="{% url 'portfolio:contact' %}" class="nav-seg-item {% if request.resolver_match.url_name == 'contact' %}nav-seg-item--active{% endif %}">contact</a>{% endif %}
+    <nav class="site-nav">
+      <div class="nav-left">
+        <a href="{% url 'portfolio:project_list' %}" class="logo">
+          <span class="logo-name">Pixelmonks</span>
+        </a>
+      </div>
+      <nav class="nav-seg" aria-label="Site navigation">
+        <a
+          href="{% url 'portfolio:project_list' %}"
+          class="nav-seg-item {% if request.resolver_match.url_name == 'project_list' or request.resolver_match.url_name == 'project_detail' %}nav-seg-item--active{% endif %}"
+          >work</a
+        >
+        <a
+          href="{% url 'portfolio:about' %}"
+          class="nav-seg-item {% if request.resolver_match.url_name == 'about' %}nav-seg-item--active{% endif %}"
+          >about</a
+        >
+        {% if site_settings.contact_enable %}<a
+          href="{% url 'portfolio:contact' %}"
+          class="nav-seg-item {% if request.resolver_match.url_name == 'contact' %}nav-seg-item--active{% endif %}"
+          >contact</a
+        >{% endif %}
+      </nav>
     </nav>
-  </nav>
 
-  <main>
-    {% if messages %}
+    <main>
+      {% if messages %}
       <div class="messages">
         {% for message in messages %}
-          <div class="message message--{{ message.tags }}">{{ message }}</div>
+        <div class="message message--{{ message.tags }}">{{ message }}</div>
         {% endfor %}
       </div>
-    {% endif %}
+      {% endif %} {% block content %}{% endblock %}
+    </main>
 
-    {% block content %}{% endblock %}
-  </main>
+    <footer class="site-footer">
+      <span class="footer-copy">© {% now "Y" %} Pixelmonks</span>
+      <span class="footer-email">
+        <a href="mailto:dmanpearl@pixelmonks.com">dmanpearl@pixelmonks.com</a>
+      </span>
+    </footer>
 
-  <footer class="site-footer">
-    <span class="footer-copy">© {% now "Y" %} Pixelmonks</span>
-    <span class="footer-email">
-      <a href="mailto:dmanpearl@pixelmonks.com">dmanpearl@pixelmonks.com</a>
-    </span>
-  </footer>
-
-  <script src="{% static 'portfolio/js/main.js' %}"></script>
-  {% block extra_js %}{% endblock %}
-</body>
+    <script src="{% static 'portfolio/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
 </html>
